@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using MedicalSystem.Model;
 using MedicalSystem.Models;
 using MedicalSystem.ViewModels;
 
@@ -30,6 +26,15 @@ namespace MedicalSystem.Controllers
             };
 
             return View(homeViewModel);
+        }
+
+        public IActionResult Details(int id)
+        {
+            var Equipment = _equipmentRepository.GetEquipmentById(id);
+            if (Equipment == null)
+                return NotFound();
+
+            return View(Equipment);
         }
     }
 }

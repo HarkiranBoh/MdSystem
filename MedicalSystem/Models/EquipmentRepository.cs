@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using MedicalSystem.Model;
+using MedicalSystem.Models;
 
 namespace MedicalSystem.Models
 {

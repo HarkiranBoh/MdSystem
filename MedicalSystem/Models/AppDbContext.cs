@@ -1,4 +1,4 @@
-﻿using MedicalSystem.Model;
+﻿using MedicalSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,5 +14,6 @@ namespace MedicalSystem.Models
 
         }
         public DbSet<Equipment> Equipment { get; set; }
+        public DbSet<Feedback> Feedbacks { get; set; }
     }
 }

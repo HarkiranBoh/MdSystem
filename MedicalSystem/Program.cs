@@ -29,9 +29,7 @@ namespace MedicalSystem
                     EquipmentDBInitialiser.ProductInformation(context);
                 }
                 catch(Exception)
-                {
-                    
-                }
+                {}
             }
             host.Run();
         }

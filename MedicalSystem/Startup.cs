@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
-using MedicalSystem.Model;
 using MedicalSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,8 +24,11 @@ namespace MedicalSystem
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-           services.AddTransient<IEquipmentRepository, EquipmentRepository>();
-           services.AddMvc();
+
+            services.AddTransient<IEquipmentRepository, EquipmentRepository>();
+            services.AddTransient<IFeedbackRepository, FeedbackRepository>();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,7 +37,15 @@ namespace MedicalSystem
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name:"default",
+                    template:"{controller=Home}/{action=Index}/{id?}"
+                    );
+            }
+            
+            );
         }
     }
 }
