@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MedicalSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Identity;
 
 namespace MedicalSystem
 {
@@ -25,6 +26,7 @@ namespace MedicalSystem
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddTransient<IEquipmentRepository, EquipmentRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();
 
@@ -37,6 +39,9 @@ namespace MedicalSystem
             app.UseDeveloperExceptionPage();
             app.UseStatusCodePages();
             app.UseStaticFiles();
+
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
