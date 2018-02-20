@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
+//as we do not have a login class
 namespace MedicalSystem.ViewModels
 {
     public class LoginViewModel

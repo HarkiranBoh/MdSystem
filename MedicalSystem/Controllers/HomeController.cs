@@ -17,24 +17,14 @@ namespace MedicalSystem.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            var equipment = _equipmentRepository.GetAllEquipment().OrderBy(e => e.Name);
 
-            var homeViewModel = new HomeViewModel()
-            {
-                equipment = equipment.ToList(),
-                Title = "Welcome to the online medical store"
-            };
-
-            return View(homeViewModel);
+            return View();
         }
 
-        public IActionResult Details(int id)
+        [Route("About")]
+        public IActionResult About()
         {
-            var Equipment = _equipmentRepository.GetEquipmentById(id);
-            if (Equipment == null)
-                return NotFound();
-
-            return View(Equipment);
+            return View();
         }
     }
 }

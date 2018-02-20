@@ -15,8 +15,11 @@
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Medical Equipment System</a></li>
+                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a></li>
+                    <li><a asp-controller="Home" asp-action="About" class="navbar-brand">About</a></li>
+                    <li><a asp-controller="Equipment" asp-action="Index" class="navbar-brand">Products</a></li>
                     <li><a asp-controller="Feedback" asp-action="Index" class="navbar-brand">Contact Us</a></li>
+                    
                 </ul>
 
                     @if (SignInManager.IsSignedIn(User))
@@ -45,5 +48,8 @@
             @RenderBody()
         </div>
     </div>
+    <footer>
+        This is the footer
+    </footer>
 </body>
 </html>
