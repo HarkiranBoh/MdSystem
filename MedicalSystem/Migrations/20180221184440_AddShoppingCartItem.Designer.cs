@@ -11,9 +11,10 @@ using System;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180221184440_AddShoppingCartItem")]
+    partial class AddShoppingCartItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,64 +67,6 @@ namespace MedicalSystem.Migrations
                     b.HasKey("FeedbackId");
 
                     b.ToTable("Feedbacks");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.Order", b =>
-                {
-                    b.Property<int>("OrderId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AddressLine1");
-
-                    b.Property<string>("AddressLine2");
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("Country");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("HospitalName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<DateTime>("OrderPlaced");
-
-                    b.Property<decimal>("OrderTotal");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<string>("State");
-
-                    b.Property<string>("ZipCode");
-
-                    b.HasKey("OrderId");
-
-                    b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.OrderDetail", b =>
-                {
-                    b.Property<int>("OrderDetailId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("Amount");
-
-                    b.Property<int>("EquipmentId");
-
-                    b.Property<int>("OrderId");
-
-                    b.Property<decimal>("Price");
-
-                    b.HasKey("OrderDetailId");
-
-                    b.HasIndex("EquipmentId");
-
-                    b.HasIndex("OrderId");
-
-                    b.ToTable("OrderDetails");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.ShoppingCartItem", b =>
@@ -301,19 +244,6 @@ namespace MedicalSystem.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.OrderDetail", b =>
-                {
-                    b.HasOne("MedicalSystem.Models.Equipment", "Equipment")
-                        .WithMany()
-                        .HasForeignKey("EquipmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("MedicalSystem.Models.Order", "Order")
-                        .WithMany("OrderLines")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.ShoppingCartItem", b =>

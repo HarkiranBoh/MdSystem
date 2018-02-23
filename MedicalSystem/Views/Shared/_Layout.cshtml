@@ -19,6 +19,7 @@
                     <li><a asp-controller="Home" asp-action="About" class="navbar-brand">About</a></li>
                     <li><a asp-controller="Equipment" asp-action="Index" class="navbar-brand">Products</a></li>
                     <li><a asp-controller="Feedback" asp-action="Index" class="navbar-brand">Contact Us</a></li>
+                   
                     
                 </ul>
 
@@ -28,6 +29,7 @@
                               method="post" class="navbar-right">
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                @await Component.InvokeAsync("ShoppingCartSummary")
                             </ul>
                         </form>
                     }
@@ -36,6 +38,9 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li><a id="registerLink" asp-controller="Account" asp-action="Register">Register</a></li>
                             <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
+                            @await Component.InvokeAsync("ShoppingCartSummary")
+
+
                         </ul>
                     }
                 
@@ -44,6 +49,7 @@
       </nav>
 
     <div class="container body-content">
+       
         <div class="row">
             @RenderBody()
         </div>

@@ -11,7 +11,11 @@
         </h3>
         <h4>@Model.ShortDescription</h4>
         <p>@Model.LongDescription</p>
-        <a asp-controller="Cart" asp-action="Index">Add to cart</a>        
-    </div>
+        <div class="addTocart">
+            <div class="button">
+                <a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="AddToCart" asp-route-id="@Model.Id">Add to cart</a>
+            </div>
+        </div>
+        </div>
  </div>
 

@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace MedicalSystem.Controllers
 {
-    [Authorize]
+    
     public class FeedbackController : Controller
     {
         private readonly IFeedbackRepository _feedbackRepository;

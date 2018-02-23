@@ -16,7 +16,7 @@ namespace MedicalSystem.Models
                 InitializeEquipment();
             }
         }
-
+        
         public IEnumerable<Equipment> GetAllEquipment()
         {
             return _equipment;
