@@ -43,7 +43,7 @@ namespace MedicalSystem.Controllers
                   _shoppingCart.AddToCart(selectedEquipment, 1);
 
               }
-              return RedirectToAction("Index");
+            return RedirectToAction("Index");
             } 
     }
     }
