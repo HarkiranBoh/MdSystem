@@ -48,7 +48,8 @@ namespace MedicalSystem.Models
                         Amount = 1
                     };
 
-                    _appDbContext.ShoppingCartItems.Add(shoppingCartItem);
+                    _appDbContext.ShoppingCartItems.Add(shoppingCartItem); 
+
                 }
                 else
                 {

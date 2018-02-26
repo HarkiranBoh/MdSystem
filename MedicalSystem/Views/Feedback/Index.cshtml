@@ -1,9 +1,15 @@
 ﻿@model Feedback
 
+
+<h1>Where we are!</h1>
+<div class="map-container">
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApujLnRwisuZTuhI49oado4E-7SWY_Qxs&callback=initMap"></script>
+    <script src="/javascript/JavaScript.js"></script>
+</div>
+
+
 <form asp-action="Index" method="post" class="form-horizontal" role="form">
-
-    
-
     <div class="form-group">
         <label asp-for="Name" class="col-md-2 control-label"></label>
         <div class="col-md-5">
@@ -42,4 +48,6 @@
     </div>
 
 </form>
+
+
 

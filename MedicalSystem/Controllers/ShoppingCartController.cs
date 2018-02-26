@@ -35,15 +35,16 @@ namespace MedicalSystem.Controllers
             return View(ShoppingCartViewModel);
         }
 
-        /* public RedirectToActionResult AddToCart(int equipmentId)
+         public RedirectToActionResult AddToCart(int equipmentId)
          {
-            var selectedEquipment = _equipmentRepository.Equipment.FirstOrDefault(e => e.id == equipmentId);
-             if (selectedEquipment != null)
-             {
-                 _shoppingCart.AddToCart(selectedEquipment, 1);
+            var selectedEquipment = _equipmentRepository.GetEquipmentById(equipmentId);
+              if (selectedEquipment != null)
+              {
+                  _shoppingCart.AddToCart(selectedEquipment, 1);
 
-             }
-             return RedirectToAction("Index");
-    }*/
+              }
+              return RedirectToAction("Index");
+            } 
     }
-}
+    }
+

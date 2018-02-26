@@ -1,12 +1,12 @@
 ﻿@model ShoppingCartViewModel
 
 <h2>Your shopping cart</h2>
-<h4>Here are the delicious pies in your shopping cart.</h4>
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
-            <th>Selected amount</th>
-            <th>Pie</th>
+            <th>Quantity</th>
+            <th>Equipment</th>
             <th class="text-right">Price</th>
             <th class="text-right">Subtotal</th>
         </tr>
@@ -33,4 +33,8 @@
         </tr>
     </tfoot>
 </table>
+
+<div class="text-center">
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out</a>
+</div>
 
