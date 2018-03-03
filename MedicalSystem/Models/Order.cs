@@ -15,27 +15,25 @@ namespace MedicalSystem.Models
         public List<OrderDetail> OrderLines { get; set; }
 
         [Required(ErrorMessage = "Please enter your first name")]
-        [Display(Name = "First name")]
+        [Display(Name = "Name")]
         [StringLength(50)]
-        public string FirstName { get; set; }
+        public string Name { get; set; }
 
-        [Required(ErrorMessage = "Please enter your last name")]
-        [Display(Name = "Last name")]
-        [StringLength(50)]
-        public string LastName { get; set; }
+        [Display(Name = "Hospital Address")]
+        public string HospitalName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your address")]
+        [Required(ErrorMessage = "Please enter the address")]
         [StringLength(100)]
-        [Display(Name = "Address Line 1")]
+        [Display(Name = "Hospital Address")]
         public string AddressLine1 { get; set; }
 
         [Display(Name = "Address Line 2")]
         public string AddressLine2 { get; set; }
 
-        [Required(ErrorMessage = "Please enter your zip code")]
-        [Display(Name = "Zip code")]
+        [Required(ErrorMessage = "Please enter the post code")]
+        [Display(Name = "Post code")]
         [StringLength(10, MinimumLength = 4)]
-        public string ZipCode { get; set; }
+        public string PostCode { get; set; }
 
         [Required(ErrorMessage = "Please enter your city")]
         [StringLength(50)]

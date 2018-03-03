@@ -112,7 +112,12 @@ namespace MedicalSystem.Models
                     .Select(c => c.Equipment.Price * c.Amount).Sum();
                 return total;
             }
-        }
+
+        /*public int UpdateCart()
+        {
+
+        }*/
     }
+}
 
 

@@ -5,14 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MedicalSystem.Models;
 using MedicalSystem.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MedicalSystem.Controllers
 {
+    [Route("Equipment/[controller]/[action]/{id?}")]
     public class ShoppingCartController : Controller
     {
-
+        //will be displayed through contr injection
         private readonly IEquipmentRepository _equipmentRepository;
         private readonly ShoppingCart _shoppingCart;
 
@@ -35,7 +37,7 @@ namespace MedicalSystem.Controllers
             return View(ShoppingCartViewModel);
         }
 
-         public RedirectToActionResult AddToCart(int equipmentId)
+         public IActionResult AddToCart(int equipmentId)
          {
             var selectedEquipment = _equipmentRepository.GetEquipmentById(equipmentId);
               if (selectedEquipment != null)
@@ -45,6 +47,28 @@ namespace MedicalSystem.Controllers
               }
             return RedirectToAction("Index");
             } 
+
+        public IActionResult RemoveFromCart(int equipmentId)
+        {
+            var selectedEquipment = _equipmentRepository.GetEquipmentById(equipmentId);
+            if (selectedEquipment != null)
+            {
+                _shoppingCart.RemoveFromCart(selectedEquipment);
+               
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult ClearCart()
+        {
+              _shoppingCart.ClearCart();
+            return RedirectToAction("Index");
+        }
+
+       /* public ActionResult UpdateCart()
+        {
+            
+        }*/
     }
     }
 

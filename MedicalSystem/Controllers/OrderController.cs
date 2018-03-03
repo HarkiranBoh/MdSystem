@@ -13,12 +13,14 @@ namespace MedicalSystem.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly ShoppingCart _shoppingCart;
+
+        //dependancy injecton constructor 
         public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
         {
             _orderRepository = orderRepository;
             _shoppingCart = shoppingCart;
         }
-        // GET: /<controller>/
+        //returns the checkout page
         public IActionResult Checkout()
         {
             return View();
