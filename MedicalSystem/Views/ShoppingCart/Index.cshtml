@@ -1,43 +1,55 @@
 ﻿@model ShoppingCartViewModel
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
 
+<script type="text/javascript">
+function UpdateQuantity(id, equipmentId, amount)
+{
+    var data = { ShoppingCartItemId: id, EquipmentId: equipmentId, Amount: amount };
+    $.post("/Equipment/ShoppingCart/UpdateCart/"+JSON.stringify(data));
+}
+</script>
 
 <h2>Your shopping cart</h2>
 
 <div><a asp-controller="Equipment" asp-action="Index">  Back to shopping  </a></div>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Remove</th>
-            <th>Quantity<div class="text-right"><a class="btn btn-link" href="#">Update</a></div></th>
-            <th>Equipment</th>
-            <th class="text-right">Price</th>
-            <th class="text-right">Subtotal</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
-        {
+    <table class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td class="text-center"><input type="checkbox" asp-controller="ShoppingCart" asp-action="RemoveFromCart"/> </td>
-                <td class="text-center"><input type="text" name="quantity" value="@line.Amount" /></td>
-                <td class="text-left">@line.Equipment.Name</td>
-                <td class="text-right">@line.Equipment.Price.ToString("c")</td>
+                <th>Remove</th>
+                <th>Quantity</th>
+                <th>Equipment</th>
+                <th>Update</th>
+                <th class="text-right">Price</th>
+                <th class="text-right">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var line in Model.ShoppingCart.ShoppingCartItems)
+            {
+                <tr>
+                    <td class="text-center"><a class="btn btn-primary" asp-controller="ShoppingCart" asp-action="RemoveFromCart" asp-route-id="1002">Remove</a></td>
+                    <td class="text-center"><input type="text" id="amount" name="Amount" value="@line.Amount" /></td>
+                    <td class="text-left">@line.Equipment.Name</td>
+                    <td class="text-left"> <a class="btn btn-primary" onclick="UpdateQuantity(@line.ShoppingCartItemId, @line.Equipment.Id,document.getElementById('amount').value)">Update Cart</a></td>
+                    <td class="text-right">@line.Equipment.Price.ToString("c")</td>
+                    <td class="text-right">
+                        @line.SubTotal.ToString("c")
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="5" class="text-right">Total:</td>
                 <td class="text-right">
-                    @((line.Amount * line.Equipment.Price).ToString("c"))
+                    @Model.ShoppingCartTotal.ToString("c")
                 </td>
             </tr>
-        }
-    </tbody>
-    <tfoot>
-        <tr>
-            <td colspan="4" class="text-right">Total:</td>
-            <td class="text-right">
-                @Model.ShoppingCartTotal.ToString("c")
-            </td>
-        </tr>
-    </tfoot>
-</table>
+        </tfoot>
+    </table>
 
 <div class="text-center">
     <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout">Check out</a>

@@ -45,7 +45,8 @@ namespace MedicalSystem.Models
                     {
                         ShoppingCartId = ShoppingCartId,
                         Equipment = equipment,
-                        Amount = 1
+                        Amount = amount,
+                        SubTotal = equipment.Price * amount
                     };
 
                     _appDbContext.ShoppingCartItems.Add(shoppingCartItem); 
@@ -91,6 +92,7 @@ namespace MedicalSystem.Models
                            _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId)
                                .Include(s => s.Equipment)
                                .ToList());
+           
             }
 
             public void ClearCart()
@@ -113,10 +115,23 @@ namespace MedicalSystem.Models
                 return total;
             }
 
-        /*public int UpdateCart()
+       public void UpdateCart(int shoppingCartItemId, int equipmentId, int amount)
         {
+            //get shopping cart item record from db
+            var shoppingCartItem = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartItemId == shoppingCartItemId).FirstOrDefault();
+            var equipment = _appDbContext.Equipment.Where(e => e.Id == equipmentId).FirstOrDefault();
 
-        }*/
+            //update quantity
+            if (shoppingCartItem != null)
+            {
+                shoppingCartItem.Amount = amount;
+                shoppingCartItem.SubTotal = shoppingCartItem.Amount * equipment.Price;
+            }
+            _appDbContext.Update(shoppingCartItem);
+            //save changes
+            _appDbContext.SaveChanges();
+            
+        }
     }
 }
 

@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using MedicalSystem.Models;
 using MedicalSystem.ViewModels;
 using Microsoft.AspNetCore.Http;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MedicalSystem.Controllers
 {
-    [Route("Equipment/[controller]/[action]/{id?}")]
+    [Route("Equipment/[controller]/[action]/{data?}")]
     public class ShoppingCartController : Controller
     {
         //will be displayed through contr injection
@@ -23,7 +25,7 @@ namespace MedicalSystem.Controllers
             _equipmentRepository = equipmentRepository;
             _shoppingCart = shoppingCart;
         }
-        // GET: /<controller>/
+        [HttpGet]
         public IActionResult Index()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -59,16 +61,26 @@ namespace MedicalSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult ClearCart()
-        {
-              _shoppingCart.ClearCart();
-            return RedirectToAction("Index");
+
+        [HttpPost]
+        public IActionResult UpdateCart(string data)
+         {
+
+            //parse the data that's been sent
+            var jsonData = JsonConvert.DeserializeObject<ShoppingCartItem>(data);
+
+            //call Updatecart method in model and pass data
+            _shoppingCart.UpdateCart(jsonData.ShoppingCartItemId, jsonData.EquipmentId, jsonData.Amount);
+
+            return RedirectToAction("Index", "ShoppingCart");
         }
 
-       /* public ActionResult UpdateCart()
+
+        public IActionResult ClearCart()
         {
-            
-        }*/
+            _shoppingCart.ClearCart();
+            return RedirectToAction("Index");
+        }
     }
     }
 
