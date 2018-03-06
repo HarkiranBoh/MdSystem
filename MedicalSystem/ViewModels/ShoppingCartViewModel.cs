@@ -11,5 +11,6 @@ namespace MedicalSystem.ViewModels
         
         public ShoppingCart ShoppingCart { get; set; }
         public decimal ShoppingCartTotal { get; set; }
+        public Guid ShoppingCartId { get; set; }
     }
 }

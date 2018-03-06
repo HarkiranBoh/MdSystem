@@ -59,30 +59,15 @@ namespace MedicalSystem.Models
                 _appDbContext.SaveChanges();
             }
 
-            public int RemoveFromCart(Equipment equipment)
+            public void RemoveFromCart(int ShoppingCartItemId)
             {
-                var shoppingCartItem =
-                        _appDbContext.ShoppingCartItems.SingleOrDefault(
-                            s => s.Equipment.Id == equipment.Id && s.ShoppingCartId == ShoppingCartId);
+            var shoppingCartItem = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartItemId == ShoppingCartItemId).FirstOrDefault();
+                 
+                    
+             _appDbContext.ShoppingCartItems.Remove(shoppingCartItem);
+                    
+             _appDbContext.SaveChanges();
 
-                var localAmount = 0;
-
-                if (shoppingCartItem != null)
-                {
-                    if (shoppingCartItem.Amount > 1)
-                    {
-                        shoppingCartItem.Amount--;
-                        localAmount = shoppingCartItem.Amount;
-                    }
-                    else
-                    {
-                        _appDbContext.ShoppingCartItems.Remove(shoppingCartItem);
-                    }
-                }
-
-                _appDbContext.SaveChanges();
-
-                return localAmount;
             }
 
             public List<ShoppingCartItem> GetShoppingCartItems()
@@ -95,14 +80,12 @@ namespace MedicalSystem.Models
            
             }
 
-            public void ClearCart()
+            public void ClearCart(Guid clear)
             {
-                var cartItems = _appDbContext
-                    .ShoppingCartItems
-                    .Where(cart => cart.ShoppingCartId == ShoppingCartId);
+                var cartItems = _appDbContext.ShoppingCartItems.Where(cart => cart.ShoppingCartId == ShoppingCartId).ToList();
 
                 _appDbContext.ShoppingCartItems.RemoveRange(cartItems);
-
+            
                 _appDbContext.SaveChanges();
             }
 

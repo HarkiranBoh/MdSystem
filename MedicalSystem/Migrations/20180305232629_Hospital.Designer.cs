@@ -11,9 +11,10 @@ using System;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180305232629_Hospital")]
+    partial class Hospital
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -77,39 +78,9 @@ namespace MedicalSystem.Migrations
 
                     b.Property<string>("HospitalName");
 
-                    b.Property<string>("HospitalPhone");
-
                     b.HasKey("HospitalId");
 
                     b.ToTable("Hospital");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.HospitalUsers", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<string>("HospitalUserName");
-
-                    b.Property<string>("Password");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("HospitalUser");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.Image", b =>
-                {
-                    b.Property<int>("ImageId")
-                        .ValueGeneratedOnAdd();
-
-                    b.HasKey("ImageId");
-
-                    b.ToTable("Image");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Order", b =>
@@ -201,22 +172,6 @@ namespace MedicalSystem.Migrations
                     b.HasIndex("EquipmentId");
 
                     b.ToTable("ShoppingCartItems");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.Stock", b =>
-                {
-                    b.Property<int>("StockId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("StockNumber");
-
-                    b.Property<int>("SupplierId");
-
-                    b.Property<int>("SupplierNumber");
-
-                    b.HasKey("StockId");
-
-                    b.ToTable("StockSupplier");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

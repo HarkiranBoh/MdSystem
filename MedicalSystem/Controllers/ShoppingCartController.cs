@@ -50,19 +50,17 @@ namespace MedicalSystem.Controllers
             return RedirectToAction("Index");
             } 
 
-        public IActionResult RemoveFromCart(int equipmentId)
+        public IActionResult RemoveFromCart(string data)
         {
-            var selectedEquipment = _equipmentRepository.GetEquipmentById(equipmentId);
-            if (selectedEquipment != null)
-            {
-                _shoppingCart.RemoveFromCart(selectedEquipment);
+            var jsonData = JsonConvert.DeserializeObject<ShoppingCartItem>(data);
+            
+            
+                _shoppingCart.RemoveFromCart(jsonData.ShoppingCartItemId);
                
-            }
+            
             return RedirectToAction("Index");
         }
 
-
-        [HttpPost]
         public IActionResult UpdateCart(string data)
          {
 
@@ -72,13 +70,15 @@ namespace MedicalSystem.Controllers
             //call Updatecart method in model and pass data
             _shoppingCart.UpdateCart(jsonData.ShoppingCartItemId, jsonData.EquipmentId, jsonData.Amount);
 
-            return RedirectToAction("Index", "ShoppingCart");
+            return RedirectToAction("Index");
+                
         }
 
 
-        public IActionResult ClearCart()
+        public IActionResult ClearCart(string data)
         {
-            _shoppingCart.ClearCart();
+            var jsonData = JsonConvert.DeserializeObject<ShoppingCartViewModel>(data);
+            _shoppingCart.ClearCart(jsonData.ShoppingCartId);
             return RedirectToAction("Index");
         }
     }

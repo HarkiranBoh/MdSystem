@@ -11,9 +11,10 @@ using System;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180305234652_HospitalUpdated")]
+    partial class HospitalUpdated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,24 +83,6 @@ namespace MedicalSystem.Migrations
                     b.HasKey("HospitalId");
 
                     b.ToTable("Hospital");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.HospitalUsers", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<string>("HospitalUserName");
-
-                    b.Property<string>("Password");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("HospitalUser");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Image", b =>
