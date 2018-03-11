@@ -1,4 +1,5 @@
 ﻿@model ShoppingCartViewModel
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"
         integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -65,10 +66,10 @@ function RemoveShoppingCartItem(id)
         </tfoot>
     </table>
 
-    <div class="text-center">
+    <div class="text-right">
         <a class="btn btn-primary" onclick="ClearShoppingCart('@Model.ShoppingCart.ShoppingCartId')">Clear Cart</a>
     </div>
 
 <div class="text-center">
-    <a class="btn btn-primary" >Checkout</a>
+    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout" >Checkout</a>
 </div>

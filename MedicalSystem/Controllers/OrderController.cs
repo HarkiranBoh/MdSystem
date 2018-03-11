@@ -25,5 +25,10 @@ namespace MedicalSystem.Controllers
         {
             return View();
         }
+
+        public IActionResult OrderStatus()
+        {
+            return View();
+        }
     }
 }

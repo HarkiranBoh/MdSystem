@@ -13,19 +13,24 @@ using Newtonsoft.Json;
 
 namespace MedicalSystem.Controllers
 {
+    //this defines the route url of the shopping cart page - this will route to the equipment/the controller - shoppingCart - the action/ which is defined in this class
     [Route("Equipment/[controller]/[action]/{data?}")]
     public class ShoppingCartController : Controller
     {
-        //will be displayed through contr injection
+        //private fields made for the IequipmentRepository and the ShoppingCart
         private readonly IEquipmentRepository _equipmentRepository;
         private readonly ShoppingCart _shoppingCart;
 
+        //this is a constructor thats takes in the equipmentRepository class and the shoppingCart as parameters
         public ShoppingCartController(IEquipmentRepository equipmentRepository, ShoppingCart shoppingCart)
         {
+            // the parameters are assigned to the fields 
             _equipmentRepository = equipmentRepository;
             _shoppingCart = shoppingCart;
         }
+        
         [HttpGet]
+        //
         public IActionResult Index()
         {
             var items = _shoppingCart.GetShoppingCartItems();
@@ -39,14 +44,19 @@ namespace MedicalSystem.Controllers
             return View(ShoppingCartViewModel);
         }
 
+        //Add to cart controller action is passes the equipmentId parameter
          public IActionResult AddToCart(int equipmentId)
          {
+            //variable created contains the equipment id from the database
             var selectedEquipment = _equipmentRepository.GetEquipmentById(equipmentId);
-              if (selectedEquipment != null)
-              {
+            //if the equipment id is not null
+            if (selectedEquipment != null)
+              {     
+                    //then add apply the add to cart method and pass the equipment and the amount
                   _shoppingCart.AddToCart(selectedEquipment, 1);
 
               }
+            
             return RedirectToAction("Index");
             } 
 

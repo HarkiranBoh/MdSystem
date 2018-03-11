@@ -12,6 +12,7 @@ namespace MedicalSystem.Models
          public int EquipmentId { get; set; }
          public int Amount { get; set; }
          public decimal Price { get; set; }
+
          public virtual Equipment Equipment { get; set; }
          public virtual Order Order { get; set; }
         }

@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: red;
+    background-color: blue;
 }
 
 .body-content {
@@ -78,7 +78,6 @@
 .newsletter-box input#appendedInputButton {
     background: #FFFFFF;
     display: inline-block;
-    float: left;
     height: 30px;
     clear: both;
     width: 100%;

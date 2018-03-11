@@ -1,7 +1,6 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: red;
 }
 
 .body-content {
@@ -21,6 +20,7 @@
     display: block;
 }
 
+/*the footer*/
 .footer {
     background: #EDEFF1;
     height: auto;

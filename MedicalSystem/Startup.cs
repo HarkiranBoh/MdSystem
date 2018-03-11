@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace MedicalSystem
 {
+    //thic class configures how the application should behave
     public class Startup
     {
         public IConfiguration Configuration { get; }
@@ -41,6 +42,7 @@ namespace MedicalSystem
             services.AddSession();
         }
 
+        //configures the HTTP processing pipeline for the application- for every http message that arrives, it is the code inside this method that will define the components that respond to that request
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -50,6 +52,7 @@ namespace MedicalSystem
             app.UseSession();
             app.UseAuthentication();
             
+            //defines url route using middleware
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -12,7 +12,8 @@ namespace MedicalSystem.ViewModels
         [Required]
         [Display(Name = "User Name")]
         public string UserName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Please enter your password correctly")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }
