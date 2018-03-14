@@ -23,6 +23,7 @@ namespace MedicalSystem.Controllers
         //returns the checkout page
         public IActionResult Checkout()
         {
+            
             return View();
         }
 

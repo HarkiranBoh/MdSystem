@@ -1,12 +1,16 @@
 ﻿@model LoginViewModel
 
+<head>
+    <link href="~/content/css/fontawesome-all.css" rel="stylesheet" />
+    <link href=”//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css” rel=”stylesheet”>
+</head>
 
-<h2>Before contacting us, please log in or register!</h2>
+<h2>Please log in or register!</h2>
 
 <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal" role="form">
-
+    <p class="h4 text-center mb-4">Sign Up </p>
     <div asp-validation-summary="All" class="text-danger"></div>
-
+    <!--
 
     <div class="form-group">
         <label asp-for="UserName" class="col-md-2 control-label"></label>
@@ -15,6 +19,15 @@
             <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
     </div>
+            -->
+    <div class="md-form">
+        <i class="fas fa-user prefix"></i>
+        <input asp-for="UserName" class="form-control">
+        <label for="UserName">Your name</label>
+        <span asp-validation-for="UserName" class="text-danger"></span>
+    </div>
+
+
 
     <div class="form-group">
         <label asp-for="Password" class="col-md-2 control-label"></label>
