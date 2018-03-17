@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
 using MedicalSystem.ViewModels;
+using MedicalSystem.Authentication;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,12 +13,12 @@ namespace MedicalSystem.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
 
         //dependacy injection
-        public AccountController(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager)
+        public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -45,29 +46,32 @@ namespace MedicalSystem.Controllers
                 }
             }
 
-            ModelState.AddModelError("", "User name/password not found");
+            ModelState.AddModelError("", "User name/Password not found");
             return View(loginViewModel);
         }
 
         public IActionResult Register()
         {
-            return View(new LoginViewModel());
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(LoginViewModel loginViewModel)
+        public async Task<IActionResult> Register(RegisterViewModel RegisterViewModel)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser() { UserName = loginViewModel.UserName };
-                var result = await _userManager.CreateAsync(user, loginViewModel.Password);
+                var user = new ApplicationUser() { UserName = RegisterViewModel.UserName, Email = RegisterViewModel.Email,
+                    AddressLine1 = RegisterViewModel.AddressLine1, AddressLine2 = RegisterViewModel.AddressLine2,
+                    HospitalName = RegisterViewModel.HospitalName, postcode = RegisterViewModel.postcode  };
+                var result = await _userManager.CreateAsync(user, RegisterViewModel.Password);
+                
 
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
                 }
             }
-            return View(loginViewModel);
+            return View(RegisterViewModel);
         }
 
         [HttpPost]

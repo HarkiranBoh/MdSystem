@@ -1,4 +1,5 @@
-﻿using MedicalSystem.Models;
+﻿using MedicalSystem.Authentication;
+using MedicalSystem.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalSystem.Models
 {
-    public class AppDbContext : IdentityDbContext<IdentityUser>
+    public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
@@ -25,4 +26,6 @@ namespace MedicalSystem.Models
         public DbSet<HospitalUsers> HospitalUser { get; set; }
         public DbSet<Stock> StockSupplier { get; set; }
     }
+
+
 }

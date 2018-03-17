@@ -1,7 +1,8 @@
 ﻿@using Microsoft.AspNetCore.Identity;
+@using MedicalSystem.Authentication;
 <!DOCTYPE html>
 
-@inject SignInManager<IdentityUser> SignInManager
+@inject SignInManager<ApplicationUser> SignInManager
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -9,10 +10,8 @@
 
     <link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link href="~/content/StyleSheet.css" rel="stylesheet" />
-    <link href=”//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css” rel=”stylesheet”>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/content/css/fontawesome-all.css" rel="stylesheet" />
-
-
 
 </head>
 <body>
@@ -31,6 +30,7 @@
                     {
                         <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                               method="post" class="navbar-right">
+                            <ul class="nav navbar-nav navbar-right">Hello!</ul>
                             <ul class="nav navbar-nav navbar-right">
                                 <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                                 @await Component.InvokeAsync("ShoppingCartSummary")
@@ -105,12 +105,12 @@
                             <li>
                                 <div class="input-append newsletter-box text-center">
                                     <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  bg-gray" type="button"> Enter <i class="fa fa-long-arrow-right"> </i> </button>
+                                    <button class="btn  bg-gray" type="button"> Enter <i class="fas fa-long-arrow-alt-right"> </i> </button>
                                 </div>
                             </li>
                         </ul>
                         <ul class="social">
-                            <li> <a href="#"> <i class=" fab fa-facebook-f"> &nbsp; </i> </a> </li>
+                            <li> <a href="#"> <i class="fab fa-facebook-f"> &nbsp; </i> </a> </li>
                             <li> <a href="#"> <i class="fab fa-twitter"> &nbsp; </i> </a> </li>
                             <li> <a href="#"> <i class="fab fa-google-plus"> &nbsp; </i> </a> </li>
                         </ul>
@@ -121,15 +121,12 @@
             <!--/.container-->
         </div>
         <!--/.footer-->
-
         <div class="footer-bottom">
             <div class="container">
                 <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>
                 <div class="pull-right">
                     <ul class="nav nav-pills payments">
                         <li><i class="fab fa-cc-visa"></i></li>
-                        <li><i class="fab fa-cc-mastercard"></i></li>
-                        <li><i class="fab fa-cc-amex"></i></li>
                         <li><i class="fab fa-cc-paypal"></i></li>
                     </ul>
                 </div>

@@ -10,6 +10,7 @@ using MedicalSystem.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Identity;
+using MedicalSystem.Authentication;
 
 namespace MedicalSystem
 {
@@ -27,7 +28,7 @@ namespace MedicalSystem
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>();
 
             services.AddTransient<IEquipmentRepository, EquipmentRepository>();

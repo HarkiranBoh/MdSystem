@@ -1,11 +1,11 @@
-﻿@model LoginViewModel
+﻿@model RegisterViewModel
 
 <head>
     <link href="~/content/css/fontawesome-all.css" rel="stylesheet" />
     <link href=”//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css” rel=”stylesheet”>
 </head>
 
-<h2>Please log in or register!</h2>
+<h2 class="text-center">Please log in or register!</h2>
 
 <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal" role="form">
     <p class="h4 text-center mb-4">Sign Up </p>
@@ -20,26 +20,77 @@
         </div>
     </div>
             -->
-    <div class="md-form">
-        <i class="fas fa-user prefix"></i>
+    <div class="center-block" style="width: 50%">
+        <span class="input-group-addon">
+            <i class="fas fa-user"></i><label for="UserName"> Username</label>
+        </span>
+
         <input asp-for="UserName" class="form-control">
-        <label for="UserName">Your name</label>
         <span asp-validation-for="UserName" class="text-danger"></span>
     </div>
 
+    <div class="center-block" style="width: 50%">
+        <span class="input-group-addon">
+            <i class="fas fa-envelope"></i><label for="Email"> Email</label>
+        </span>
+
+        <input asp-for="Email" class="form-control">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
 
 
+    <!--
     <div class="form-group">
+        <i class="fas fa-user prefix"></i>
         <label asp-for="Password" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
+        <div class="col-md-offset-9">
             <input asp-for="Password" class="form-control" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
     </div>
+        -->
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-primary" value="Register" />
+    <div style="width: 50%;" class="center-block">
+        <span class="input-group-addon"><i class="fas fa-lock"></i><label for="Password"> Password</label></span>
+        <input asp-for="Password" class="form-control" />
+        <span asp-validation-for="Password" class="text-danger" style="margin-top: 25px"></span>
+    </div>
+
+    <div class="center-block" style="width: 50%">
+        <span class="input-group-addon">
+            <i class="fas fa-hospital-symbol"></i><label for="HospitalName"> Hospital Name</label>
+        </span>
+        <input asp-for="HospitalName" class="form-control">
+        <span asp-validation-for="HospitalName" class="text-danger"></span>
+    </div>
+
+    <div class="center-block" style="width: 50%">
+        <span class="input-group-addon">
+            <i class="fas fa-address-book"></i><label for="AddressLine1"> Address Line 1</label>
+        </span>
+        <input asp-for="AddressLine1" class="form-control">
+        <span asp-validation-for="AddressLine1" class="text-danger"></span>
+    </div>
+
+    <div class="center-block" style="width: 50%">
+        <span class="input-group-addon">
+            <i class="fas fa-address-book"></i><label for="AddressLine2"> Address Line 2</label>
+        </span>
+        <input asp-for="AddressLine2" class="form-control">
+        <span asp-validation-for="AddressLine2" class="text-danger"></span>
+    </div>
+
+    <div class="center-block" style="width: 50%">
+        <span class="input-group-addon">
+            <label for="postcode"> Postcode</label>
+        </span>
+        <input asp-for="postcode" class="form-control">
+        <span asp-validation-for="postcode" class="text-danger"></span>
+    </div>
+
+    <div class="center-block" style="margin: 25px">
+        <div class="col-md-push-4">
+            <input type="submit" class="btn btn-primary center-block" value="Register" />
         </div>
     </div>
 </form>

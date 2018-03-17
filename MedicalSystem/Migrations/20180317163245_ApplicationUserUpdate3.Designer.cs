@@ -11,9 +11,10 @@ using System;
 namespace MedicalSystem.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180317163245_ApplicationUserUpdate3")]
+    partial class ApplicationUserUpdate3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -28,8 +29,6 @@ namespace MedicalSystem.Migrations
                     b.Property<int>("AccessFailedCount");
 
                     b.Property<string>("AddressLine1");
-
-                    b.Property<string>("AddressLine2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -63,8 +62,6 @@ namespace MedicalSystem.Migrations
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256);
-
-                    b.Property<string>("postcode");
 
                     b.HasKey("Id");
 
