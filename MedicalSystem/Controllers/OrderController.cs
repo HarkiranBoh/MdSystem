@@ -15,32 +15,34 @@ namespace MedicalSystem.Controllers
     public class OrderController : Controller
     {
         private readonly IOrderRepository _orderRepository;
-        private readonly ShoppingCart _shoppingCart;
-        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly Checkout _checkout;
+
 
 
         //dependancy injecton constructor 
-        public OrderController(IOrderRepository orderRepository, ShoppingCart shoppingCart)
+        public OrderController(IOrderRepository orderRepository, Checkout checkout)
         {
             _orderRepository = orderRepository;
-            _shoppingCart = shoppingCart;
+            _checkout = checkout;
+            
         }
         //returns the checkout page
         
         public IActionResult Checkout()
         {
+            //get user information when logged in from httpcontext
+            string userId = HttpContext.User.Identity.Name;
+            var loggedInUser = _checkout.GetLoggedInUserDetails(userId);
 
-            
-
-            var RegisterViewModel = new RegisterViewModel()
-
+            var CheckoutViewModel = new CheckoutViewModel
             {
+                UserName = loggedInUser.UserName,
+                HospitalName = loggedInUser.HospitalName
                 
-                
+
             };
-            
-            
-            return View();
+
+            return View(CheckoutViewModel);
         }
 
         public IActionResult OrderStatus()

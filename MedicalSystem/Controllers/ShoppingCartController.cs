@@ -89,7 +89,9 @@ namespace MedicalSystem.Controllers
         {
             var jsonData = JsonConvert.DeserializeObject<ShoppingCartViewModel>(data);
             _shoppingCart.ClearCart(jsonData.ShoppingCartId);
-            return RedirectToAction("Index");
+           // return RedirectToAction("Index");
+            string ReturnURL = "/Equipment/ShoppingCart/Index";
+            return Json(ReturnURL);
         }
     }
     }

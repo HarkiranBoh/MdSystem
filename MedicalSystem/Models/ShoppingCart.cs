@@ -19,8 +19,9 @@ namespace MedicalSystem.Models
                 _appDbContext = appDbContext;
             }
 
-            //public string ShoppingCartId get and set it.
-            public string ShoppingCartId { get; set; }
+
+        //public string ShoppingCartId get and set it.
+        public string ShoppingCartId { get; set; }
            
             //List of type<ShoppingCartItem> 
             public List<ShoppingCartItem> ShoppingCartItems { get; set; }

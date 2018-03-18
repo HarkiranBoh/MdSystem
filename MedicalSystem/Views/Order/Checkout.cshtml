@@ -1,7 +1,7 @@
 ﻿@using MedicalSystem.Authentication;
 @using Microsoft.AspNetCore.Identity;
 
-@model IEnumerable<ApplicationUser>
+@model CheckoutViewModel
 
 
 @inject SignInManager<ApplicationUser> SignInManager
@@ -19,10 +19,8 @@
 @{
     @if (SignInManager.IsSignedIn(User))
     {
-
-        <p>@Model.UserName</p>
-
-
+        <div>@Model.UserName</div>
+        <div>@Model.HospitalName</div>
     }
     }
 

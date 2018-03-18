@@ -11,14 +11,16 @@ namespace MedicalSystem.Models
          private readonly ShoppingCart _shoppingCart;
 
 
-            public OrderRepository(AppDbContext appDbContext, ShoppingCart shoppingCart)
+        public OrderRepository(AppDbContext appDbContext, ShoppingCart shoppingCart)
             {
                 _appDbContext = appDbContext;
                 _shoppingCart = shoppingCart;
             }
 
 
-            public void CreateOrder(Order order)
+     
+
+        public void CreateOrder(Order order)
             {
                 order.OrderPlaced = DateTime.Now;
 
@@ -41,6 +43,9 @@ namespace MedicalSystem.Models
 
                 _appDbContext.SaveChanges();
             }
-        }
+
+        
+
+    }
     }
 

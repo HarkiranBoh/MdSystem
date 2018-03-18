@@ -22,6 +22,8 @@ function RemoveShoppingCartItem(id)
     {
         var clear = { ShoppingCartId: shoppingCartId }
         $.post("/Equipment/ShoppingCart/ClearCart/" + JSON.stringify(clear));
+        Onsuccess(function (retURL) { location.replace(retURL); })
+
 
     }
 </script>
