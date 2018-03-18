@@ -17,6 +17,11 @@ namespace MedicalSystem.Models
             _appDbContext = appDbContext;
         }
 
+        public List<ShoppingCartItem> GetItems(Guid shoppingCartId)
+        {
+            return _appDbContext.ShoppingCartItems.Where(i => i.ShoppingCartId == shoppingCartId.ToString()).ToList();
+        }
+
         public User GetLoggedInUserDetails(string userName)
         {
             var rec = _appDbContext.Users.Where(usr => usr.UserName == userName).FirstOrDefault();

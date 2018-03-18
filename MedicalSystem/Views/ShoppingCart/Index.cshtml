@@ -26,6 +26,12 @@ function RemoveShoppingCartItem(id)
 
 
     }
+
+    function SendShoppingCartSummary(shoppingCartId) {
+        var sendShoppingCart = { ShoppingCartId: shoppingCartId }
+        $.post("/Order/Order/Checkout/" + JSON.stringify(sendShoppingCart));
+
+    }
 </script>
 
 <h2>Your shopping cart</h2>
@@ -72,6 +78,7 @@ function RemoveShoppingCartItem(id)
         <a class="btn btn-primary" onclick="ClearShoppingCart('@Model.ShoppingCart.ShoppingCartId')">Clear Cart</a>
     </div>
 
-<div class="text-center">
-    <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout" >Checkout</a>
-</div>
+    <div class="text-center">
+        <a class="btn btn-primary" asp-controller="Order" asp-action="Checkout" asp-route-data="@Model.ShoppingCart.ShoppingCartId">Checkout</a>
+        <!-- <a class="btn btn-primary" onclick="SendShoppingCartSummary('@Model.ShoppingCart.ShoppingCartId')">Checkout</a>-->
+    </div>

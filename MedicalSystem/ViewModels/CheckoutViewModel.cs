@@ -12,8 +12,8 @@ namespace MedicalSystem.ViewModels
         public string HospitalName { get; set; }
         public string Email { get; set; }
 
-        public ShoppingCart ShoppingCart { get; set; }
-       
+        public List<ShoppingCartItem> ShoppingCartItems { get; set; }
 
+        
     }
 }
