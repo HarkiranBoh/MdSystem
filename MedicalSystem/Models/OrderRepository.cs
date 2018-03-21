@@ -17,9 +17,6 @@ namespace MedicalSystem.Models
                 _shoppingCart = shoppingCart;
             }
 
-
-     
-
         public void CreateOrder(Order order)
             {
                 order.OrderPlaced = DateTime.Now;
@@ -43,8 +40,6 @@ namespace MedicalSystem.Models
 
                 _appDbContext.SaveChanges();
             }
-
-        
 
     }
     }

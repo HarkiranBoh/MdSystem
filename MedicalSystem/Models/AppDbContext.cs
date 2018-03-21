@@ -23,7 +23,7 @@ namespace MedicalSystem.Models
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Image> Image { get; set; }
         public DbSet<Hospital> Hospital { get; set; }
-        public DbSet<HospitalUsers> HospitalUser { get; set; }
+       
         public DbSet<Stock> StockSupplier { get; set; }
     }
 

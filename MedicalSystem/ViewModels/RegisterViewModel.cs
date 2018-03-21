@@ -14,6 +14,7 @@ namespace MedicalSystem.ViewModels
 
         [Required(ErrorMessage = "Please enter your Email")]
         [Display(Name = "Email")]
+        [EmailAddress]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter your password")]

@@ -39,7 +39,11 @@ namespace MedicalSystem.Migrations
 
                     b.Property<bool>("EmailConfirmed");
 
+                    b.Property<string>("FirstName");
+
                     b.Property<string>("HospitalName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -141,24 +145,6 @@ namespace MedicalSystem.Migrations
                     b.HasKey("HospitalId");
 
                     b.ToTable("Hospital");
-                });
-
-            modelBuilder.Entity("MedicalSystem.Models.HospitalUsers", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FullName");
-
-                    b.Property<string>("HospitalUserName");
-
-                    b.Property<string>("Password");
-
-                    b.HasKey("UserId");
-
-                    b.ToTable("HospitalUser");
                 });
 
             modelBuilder.Entity("MedicalSystem.Models.Image", b =>

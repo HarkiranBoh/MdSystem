@@ -8,7 +8,7 @@ namespace MedicalSystem.Models
     public class Equipment
     {
         public int Id { get; set; }
-        public String Name { get; set; }
+        public string Name { get; set; }
         public string ShortDescription {get; set;}
         public string LongDescription { get; set; }
         public decimal Price { get; set; }
