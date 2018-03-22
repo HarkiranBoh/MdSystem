@@ -1,6 +1,5 @@
 ﻿body {
-    padding-top: 50px;
-    /*padding-bottom: 20px;*/
+   
 }
 
 .body-content {
@@ -19,10 +18,7 @@
     clear: both;
     display: block;
 }
-.carousel-inner {
-    width: 100%;
-    max-height: 200px !important;
-}
+
 /*the footer*/
 .footer {
     background: #EDEFF1;
@@ -74,14 +70,14 @@
     font-size: 20px;
     font-weight: lighter;
     line-height: normal;
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
     padding-bottom: 0;
 }
 
-.newsletter-box input#appendedInputButton {
+.newsletter-box #appendedInputButton {
     background: #FFFFFF;
     display: inline-block;
-    float: left;
+    
     height: 30px;
     clear: both;
     width: 100%;
@@ -91,8 +87,6 @@
     border: medium none;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
-    -o-border-radius: 3px;
-    -ms-border-radius: 3px;
     border-radius: 3px;
     display: inline-block;
     height: 40px;
@@ -110,13 +104,12 @@
     box-shadow: 0 1px 0 #B4B3B3;
 }
 
+
 .social li {
     background: none repeat scroll 0 0 #B5B5B5;
     border: 2px solid #B5B5B5;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
-    -o-border-radius: 50%;
-    -ms-border-radius: 50%;
     border-radius: 50%;
     float: left;
     height: 36px;
@@ -126,18 +119,12 @@
     text-align: center;
     width: 36px;
     transition: all 0.5s ease 0s;
-    -moz-transition: all 0.5s ease 0s;
-    -webkit-transition: all 0.5s ease 0s;
-    -ms-transition: all 0.5s ease 0s;
-    -o-transition: all 0.5s ease 0s;
+   
 }
 
     .social li:hover {
         transform: scale(1.15) rotate(360deg);
-        -webkit-transform: scale(1.1) rotate(360deg);
-        -moz-transform: scale(1.1) rotate(360deg);
-        -ms-transform: scale(1.1) rotate(360deg);
-        -o-transform: scale(1.1) rotate(360deg);
+        
     }
 
     .social li a {
@@ -152,7 +139,7 @@
     .social li a i {
         font-size: 16px;
         margin: 0 0 0 5px;
-        color: #EDEFF1 !important;
+        color: #EDEFF1;
     }
 
 .footer-bottom {
@@ -162,7 +149,7 @@
     padding-bottom: 10px;
 }
 
-    .footer-bottom p.pull-left {
+    .footer-bottom pull-left {
         padding-top: 6px;
     }
 

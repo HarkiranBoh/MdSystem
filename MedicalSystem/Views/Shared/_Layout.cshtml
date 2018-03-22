@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 
 @inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -15,7 +16,7 @@
 
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top" >
+    <nav class="navbar navbar-inverse navbar-fixed-to">
         <div class="container">
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -23,38 +24,38 @@
                     <li><a asp-controller="Home" asp-action="About" class="navbar-brand">About</a></li>
                     <li><a asp-controller="Equipment" asp-action="Index" class="navbar-brand">Products</a></li>
                     <li><a asp-controller="Feedback" asp-action="Index" class="navbar-brand">Contact Us</a></li>
-                                 
+
                 </ul>
 
-                    @if (SignInManager.IsSignedIn(User))
-                    {
-                        <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
-                              method="post" class="navbar-right">
-                            <ul class="nav navbar-nav navbar-right">Hello!</ul>
-                            <ul class="nav navbar-nav navbar-right">
-                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                @await Component.InvokeAsync("ShoppingCartSummary")
-                            </ul>
-                        </form>
-                     
-                    }
-                    else
-                    {
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
+                          method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a id="registerLink" asp-controller="Account" asp-action="Register">Register</a></li>
-                            <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
+                            <li><a>Hello @UserManager.GetUserName(User)!</a></li>
+                            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                             @await Component.InvokeAsync("ShoppingCartSummary")
-
-
                         </ul>
-                    }
-                
+                    </form>
+
+                }
+                else
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a id="registerLink" asp-controller="Account" asp-action="Register">Register</a></li>
+                        <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+
+
+                    </ul>
+                }
+
             </div>
-          </div>
-      </nav>
+        </div>
+    </nav>
 
     <div class="container body-content">
-       
+
         <div class="row">
             @RenderBody()
         </div>
@@ -81,7 +82,7 @@
                             <li> <a href="#"> Returns and Refunds </a> </li>
                         </ul>
                     </div>
-        
+
                     <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
                         <h3> Company </h3>
                         <ul>
