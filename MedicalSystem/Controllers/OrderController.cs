@@ -40,6 +40,8 @@ namespace MedicalSystem.Controllers
             var CheckoutViewModel = new CheckoutViewModel
             {
                 UserName = loggedInUser.UserName,
+                FirstName = loggedInUser.FirstName,
+                LastName = loggedInUser.LastName,
                 HospitalName = loggedInUser.HospitalName,
                 Email = loggedInUser.Email,
                 AddressLine1 = loggedInUser.AddressLine1,
