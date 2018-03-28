@@ -1,0 +1,29 @@
+﻿@model Order
+
+<h1>Its on its way...</h1>
+
+<div>@Model.OrderId</div>
+@Model.SubTotal
+@Model.Name
+
+<div>@Model.HospitalName</div>
+
+ @foreach (var order in Model.OrderLines)
+ {
+     <div>@order.Equipment.Name</div>
+     <div>@order.Price</div>
+     <div>@order.Amount</div>
+     <div>@order.OrderDetailId</div>
+
+ }
+<h2>Live estimate time of arrival</h2>
+
+<div class="live-update-bar"></div>
+
+<div class=" invoice-details">
+    Hospital Name:
+    Address:
+    Order Details:
+</div>
+
+<div id="map"></div>

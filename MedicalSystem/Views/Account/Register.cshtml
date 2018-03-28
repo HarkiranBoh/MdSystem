@@ -10,7 +10,7 @@
 <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal" role="form">
     <p class="h4 text-center mb-4">Sign Up </p>
     <div asp-validation-summary="All" class="text-danger"></div>
-    <!--
+
 
     <div class="form-group">
         <label asp-for="UserName" class="col-md-2 control-label"></label>
@@ -19,78 +19,60 @@
             <span asp-validation-for="UserName" class="text-danger"></span>
         </div>
     </div>
-            -->
-    <div class="center-block" style="width: 50%">
-        <span class="input-group-addon">
-            <i class="fas fa-user"></i><label for="UserName"> Username</label>
-        </span>
 
-        <input asp-for="UserName" class="form-control">
-        <span asp-validation-for="UserName" class="text-danger"></span>
-    </div>
-
-    <div class="center-block" style="width: 50%">
-        <span class="input-group-addon">
-            <i class="fas fa-envelope"></i><label for="Email"> Email</label>
-        </span>
-
-        <input asp-for="Email" class="form-control">
-        <span asp-validation-for="Email" class="text-danger"></span>
-    </div>
-
-
-    <!--
     <div class="form-group">
-        <i class="fas fa-user prefix"></i>
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Email" class="form-control">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
         <label asp-for="Password" class="col-md-2 control-label"></label>
-        <div class="col-md-offset-9">
+        <div class="col-md-10">
             <input asp-for="Password" class="form-control" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
     </div>
-        -->
 
-    <div style="width: 50%;" class="center-block">
-        <span class="input-group-addon"><i class="fas fa-lock"></i><label for="Password"> Password</label></span>
-        <input asp-for="Password" class="form-control" />
-        <span asp-validation-for="Password" ></span>
+    <div class="form-group">
+        <label asp-for="HospitalName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="HospitalName" class="form-control" />
+            <span asp-validation-for="HospitalName" class="text-danger"></span>
+        </div>
     </div>
 
-    <div class="center-block" style="width: 50%">
-        <span class="input-group-addon">
-            <i class="fas fa-hospital-symbol"></i><label for="HospitalName"> Hospital Name</label>
-        </span>
-        <input asp-for="HospitalName" class="form-control">
-        <span asp-validation-for="HospitalName" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="AddressLine1" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="AddressLine1" class="form-control" />
+            <span asp-validation-for="AddressLine1" class="text-danger"></span>
+        </div>
     </div>
 
-    <div class="center-block" style="width: 50%">
-        <span class="input-group-addon">
-            <i class="fas fa-address-book"></i><label for="AddressLine1"> Address Line 1</label>
-        </span>
-        <input asp-for="AddressLine1" class="form-control">
-        <span asp-validation-for="AddressLine1" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="AddressLine2" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="AddressLine2" class="form-control" />
+            <span asp-validation-for="AddressLine2" class="text-danger"></span>
+        </div>
     </div>
+  
 
-    <div class="center-block" style="width: 50%">
-        <span class="input-group-addon">
-            <i class="fas fa-address-book"></i><label for="AddressLine2"> Address Line 2</label>
-        </span>
-        <input asp-for="AddressLine2" class="form-control">
-        <span asp-validation-for="AddressLine2" class="text-danger"></span>
+    <div class="form-group">
+        <label asp-for="postcode" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="postcode" class="form-control" />
+            <span asp-validation-for="postcode" class="text-danger"></span>
+        </div>
     </div>
-
-    <div class="center-block" style="width: 50%">
-        <span class="input-group-addon">
-            <label for="postcode"> Postcode</label>
-        </span>
-        <input asp-for="postcode" class="form-control">
-        <span asp-validation-for="postcode" class="text-danger"></span>
-    </div>
-
     <div class="center-block" style="margin: 25px">
         <div class="col-md-push-4">
             <input type="submit" class="btn btn-primary center-block" value="Register" />
         </div>
     </div>
 </form>
+ 

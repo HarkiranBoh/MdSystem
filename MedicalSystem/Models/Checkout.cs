@@ -23,12 +23,12 @@ namespace MedicalSystem.Models
             return _appDbContext.ShoppingCartItems.Where(i => i.ShoppingCartId == shoppingCartId.ToString()).ToList();
         }
 
-       public List<ShoppingCartItem> GetEquipment(int equipmentId)
+       public List<ShoppingCartItem> GetEquipment(string shoppingCartId)
         {
 
             // return _appDbContext.ShoppingCartItems.Where(c => c.EquipmentId == shoppingCartItemId).Include(d => d.Equipment.Name == equipment);
             
-            return _appDbContext.ShoppingCartItems.Where(c => c.EquipmentId == equipmentId).Include(s => s.Equipment).ToList();
+            return _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == shoppingCartId).Include(s => s.Equipment).ToList();
 
         }
 

@@ -49,6 +49,8 @@ namespace MedicalSystem.Models
         [BindNever]
         [ScaffoldColumn(false)]
         public DateTime OrderPlaced { get; set; }
+
+        public string ShoppingCartId { get; set; }
     }
     }
 

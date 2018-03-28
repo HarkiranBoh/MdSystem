@@ -116,8 +116,6 @@ namespace MedicalSystem.Migrations
                         .IsRequired()
                         .HasMaxLength(100);
 
-                    b.Property<string>("HospitalName");
-
                     b.Property<string>("Message")
                         .IsRequired()
                         .HasMaxLength(5000);
@@ -182,6 +180,8 @@ namespace MedicalSystem.Migrations
 
                     b.Property<string>("PostCode")
                         .HasMaxLength(10);
+
+                    b.Property<string>("ShoppingCartId");
 
                     b.Property<decimal>("SubTotal");
 

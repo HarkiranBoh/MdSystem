@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -21,23 +22,30 @@ namespace MedicalSystem.Models
             {
                 order.OrderPlaced = DateTime.Now;
 
-                _appDbContext.Orders.Add(order);
+            _appDbContext.Orders.Add(order);
+            _appDbContext.SaveChanges();
 
-                var shoppingCartItems = _shoppingCart.ShoppingCartItems;
+            var shoppingCartItems = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == order.ShoppingCartId).Include(s => s.Equipment).ToList();
+            var total = 0.0M;
 
-                foreach (var shoppingCartItem in shoppingCartItems)
+            foreach (var shoppingCartItem in shoppingCartItems)
                 {
                     var orderDetail = new OrderDetail()
                     {
                         Amount = shoppingCartItem.Amount,
                         EquipmentId = shoppingCartItem.Equipment.Id,
                         OrderId = order.OrderId,
-                        Price = shoppingCartItem.Equipment.Price
+                        Price = shoppingCartItem.Equipment.Price,
+                       
                     };
 
-                    _appDbContext.OrderDetails.Add(orderDetail);
-                }
+                    total = total + (shoppingCartItem.Amount * shoppingCartItem.Equipment.Price);
 
+                    _appDbContext.OrderDetails.Add(orderDetail);              
+            }
+
+                order.SubTotal = total;
+                _appDbContext.Orders.Update(order);
                 _appDbContext.SaveChanges();
             }
 

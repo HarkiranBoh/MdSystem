@@ -18,12 +18,10 @@ namespace MedicalSystem.ViewModels
         public string PostCode { get; set; }
 
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
+
+        public string ShoppingCartId { get; set; }
+
         public List<Equipment> Equipment { get; set; }
-
-        public Equipment equipment { get; set; }
-        public ShoppingCart ShoppingCart { get; set; }
-
-
 
     }
 }

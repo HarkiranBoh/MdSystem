@@ -28,8 +28,13 @@ namespace MedicalSystem
         {
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>( x =>
+                {
+                    x.Password.RequiredLength = 6;
+                    x.Password.RequireUppercase = false;
+                    x.Password.RequireLowercase = false;
+                    x.Password.RequireNonAlphanumeric = false;
+                }).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
             services.AddTransient<IEquipmentRepository, EquipmentRepository>();
             services.AddTransient<IFeedbackRepository, FeedbackRepository>();

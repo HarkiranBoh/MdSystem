@@ -29,13 +29,16 @@ namespace MedicalSystem.Controllers
             
         }
         //returns the checkout page
+        [HttpGet]
         public IActionResult Checkout(string data)
         {
             //var jsonData = JsonConvert.DeserializeObject<ShoppingCartViewModel>(data);
-            var items = _checkout.GetItems(new Guid(data));
+            //var items = _checkout.GetItems(new Guid(data));
+            var items = _checkout.GetEquipment(data);
             //get user information when logged in from httpcontext
             string userId = HttpContext.User.Identity.Name;
             var loggedInUser = _checkout.GetLoggedInUserDetails(userId);
+            
 
             var CheckoutViewModel = new CheckoutViewModel
             {
@@ -48,17 +51,30 @@ namespace MedicalSystem.Controllers
                 AddressLine2 = loggedInUser.AddressLine2,
                 PostCode = loggedInUser.PostCode,
                 ShoppingCartItems = items,
+                ShoppingCartId = data
                 
             };
 
             return View(CheckoutViewModel);
         }
 
-        public IActionResult OrderStatus(Order order)
+        [HttpPost]
+        public IActionResult ConfirmOrder(CheckoutViewModel checkout)
         {
-            _orderRepository.CreateOrder(order);
+            var order = new Order {
 
+                Name = checkout.FirstName + " " + checkout.LastName,
+                HospitalName = checkout.HospitalName,
+                HospitalAdress = checkout.AddressLine1 + " " + checkout.AddressLine2,
+                PostCode = checkout.PostCode,
+                ShoppingCartId = checkout.ShoppingCartId,
+                
+
+            };
+            _orderRepository.CreateOrder(order);
             return View(order);
         }
+
+
     }
 }
