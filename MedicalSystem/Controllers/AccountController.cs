@@ -13,11 +13,12 @@ namespace MedicalSystem.Controllers
 {
     public class AccountController : Controller
     {
+        //readonly method
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly UserManager<ApplicationUser> _userManager;
 
 
-        //dependacy injection
+        //dependacy injection that inject the sign in manager and the user manager
         public AccountController(SignInManager<ApplicationUser> signInManager, UserManager<ApplicationUser> userManager)
         {
             _signInManager = signInManager;
@@ -32,6 +33,7 @@ namespace MedicalSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
+            //checking to see if input is valid - if not return the user back to the login view model
             if (!ModelState.IsValid)
                 return View(loginViewModel);
 
@@ -50,9 +52,11 @@ namespace MedicalSystem.Controllers
             return View(loginViewModel);
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
-            return View(new RegisterViewModel());
+            //return View(new RegisterViewModel());
+            return View();
         }
 
         [HttpPost]
@@ -63,12 +67,22 @@ namespace MedicalSystem.Controllers
                 var user = new ApplicationUser() { UserName = RegisterViewModel.UserName, Email = RegisterViewModel.Email,
                     AddressLine1 = RegisterViewModel.AddressLine1, AddressLine2 = RegisterViewModel.AddressLine2,
                     HospitalName = RegisterViewModel.HospitalName, postcode = RegisterViewModel.postcode  };
+
+                //set the password that the user passed in
                 var result = await _userManager.CreateAsync(user, RegisterViewModel.Password);
                 
-
+                //check the result - sucessfully created the user with the account
                 if (result.Succeeded)
                 {
+                    await _signInManager.SignInAsync(user, false);
                     return RedirectToAction("Index", "Home");
+                }
+                {
+                    //add all errors to the model state
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
                 }
             }
             return View(RegisterViewModel);

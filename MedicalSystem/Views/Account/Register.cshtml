@@ -5,74 +5,89 @@
     <link href=”//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css” rel=”stylesheet”>
 </head>
 
-<h2 class="text-center">Please log in or register!</h2>
+<h2 class="text-center">Please register!</h2>
 
 <form asp-action="Register" asp-controller="Account" method="post" class="form-horizontal" role="form">
     <p class="h4 text-center mb-4">Sign Up </p>
     <div asp-validation-summary="All" class="text-danger"></div>
 
-
     <div class="form-group">
-        <label asp-for="UserName" class="col-md-2 control-label"></label>
+        <label asp-for="FisrtName" class="col-md-2 control-label"></label>
         <div class="col-md-10">
-            <input asp-for="UserName" class="form-control" />
-            <span asp-validation-for="UserName" class="text-danger"></span>
+            <input asp-for="FisrtName" class="form-control" />
+            <span asp-validation-for="FisrtName" class="text-danger"></span>
         </div>
     </div>
 
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Email" class="form-control">
-            <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="LastName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
         </div>
-    </div>
+
+            <div class="form-group">
+                <label asp-for="UserName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Email" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Email" class="form-control">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
 
 
-    <div class="form-group">
-        <label asp-for="Password" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="Password" class="form-control" />
-            <span asp-validation-for="Password" class="text-danger"></span>
-        </div>
-    </div>
+            <div class="form-group">
+                <label asp-for="Password" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label asp-for="HospitalName" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="HospitalName" class="form-control" />
-            <span asp-validation-for="HospitalName" class="text-danger"></span>
-        </div>
-    </div>
+            <div class="form-group">
+                <label asp-for="HospitalName" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="HospitalName" class="form-control" />
+                    <span asp-validation-for="HospitalName" class="text-danger"></span>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label asp-for="AddressLine1" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="AddressLine1" class="form-control" />
-            <span asp-validation-for="AddressLine1" class="text-danger"></span>
-        </div>
-    </div>
+            <div class="form-group">
+                <label asp-for="AddressLine1" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="AddressLine1" class="form-control" />
+                    <span asp-validation-for="AddressLine1" class="text-danger"></span>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label asp-for="AddressLine2" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="AddressLine2" class="form-control" />
-            <span asp-validation-for="AddressLine2" class="text-danger"></span>
-        </div>
-    </div>
-  
+            <div class="form-group">
+                <label asp-for="AddressLine2" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="AddressLine2" class="form-control" />
+                    <span asp-validation-for="AddressLine2" class="text-danger"></span>
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label asp-for="postcode" class="col-md-2 control-label"></label>
-        <div class="col-md-10">
-            <input asp-for="postcode" class="form-control" />
-            <span asp-validation-for="postcode" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="center-block" style="margin: 25px">
-        <div class="col-md-push-4">
-            <input type="submit" class="btn btn-primary center-block" value="Register" />
-        </div>
-    </div>
+
+            <div class="form-group">
+                <label asp-for="postcode" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <input asp-for="postcode" class="form-control" />
+                    <span asp-validation-for="postcode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="center-block" style="margin: 25px">
+                <div class="col-md-push-4">
+                    <input type="submit" class="btn btn-primary center-block" value="Register" />
+                </div>
+            </div>
 </form>
  

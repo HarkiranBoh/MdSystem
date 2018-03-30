@@ -20,13 +20,13 @@ namespace MedicalSystem.ViewModels
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Please enter your Email")]
+        [Required(ErrorMessage = "Please enter your Email"), MaxLength(256), EmailAddress]
         [Display(Name = "Email")]
-        [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Please enter your password, Enter Alphanumeric, ")]
+        [Required(ErrorMessage = "Please enter your password, Enter Alphanumeric "), MinLength(6), MaxLength(50)]
         [DataType(DataType.Password)]
+        [Display(Name = "Password")]
         public string Password { get; set; }
 
         [Required]
