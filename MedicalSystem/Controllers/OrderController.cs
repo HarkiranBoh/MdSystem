@@ -13,6 +13,7 @@ using Newtonsoft.Json;
 
 namespace MedicalSystem.Controllers
 {
+    //set the route of the view connected to this controller
     [Route("Order/[controller]/[action]/{data?}")]
     public class OrderController : Controller
     {
@@ -32,14 +33,14 @@ namespace MedicalSystem.Controllers
         [HttpGet]
         public IActionResult Checkout(string data)
         {
-            //var jsonData = JsonConvert.DeserializeObject<ShoppingCartViewModel>(data);
-            //var items = _checkout.GetItems(new Guid(data));
+        
             var items = _checkout.GetEquipment(data);
             //get user information when logged in from httpcontext
             string userId = HttpContext.User.Identity.Name;
+            //get the logged in user details
             var loggedInUser = _checkout.GetLoggedInUserDetails(userId);
             
-
+            //in the variable called CheckoutViewModel create a new checkout view model object setting the properties defined.
             var CheckoutViewModel = new CheckoutViewModel
             {
                 UserName = loggedInUser.UserName,
@@ -54,13 +55,15 @@ namespace MedicalSystem.Controllers
                 ShoppingCartId = data
                 
             };
-
+            //return the view with the variable - checkoutview passed in
             return View(CheckoutViewModel);
         }
 
+        //post atribute
         [HttpPost]
         public IActionResult ConfirmOrder(CheckoutViewModel checkout)
         {
+            //create an order object with the properties set
             var order = new Order {
 
                 Name = checkout.FirstName + " " + checkout.LastName,
@@ -69,12 +72,12 @@ namespace MedicalSystem.Controllers
                 PostCode = checkout.PostCode,
                 ShoppingCartId = checkout.ShoppingCartId,
                 
-
             };
+            //create the order 
             _orderRepository.CreateOrder(order);
+            //then return the view.
             return View(order);
         }
-
-
     }
+
 }

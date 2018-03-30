@@ -13,8 +13,10 @@ namespace MedicalSystem.Controllers
 {
     public class HomeController : Controller
     {
+        //private field for the equipment reposistiry interface
         private readonly IEquipmentRepository _equipmentRepository;
  
+        //dependancy injection of the constructor 
         public HomeController(IEquipmentRepository equipmentRepository)
         {
             _equipmentRepository = equipmentRepository;
@@ -26,6 +28,7 @@ namespace MedicalSystem.Controllers
          return View();
         }
 
+        //route attribut will route to the about url
         [Route("About")]
         public IActionResult About()
         {

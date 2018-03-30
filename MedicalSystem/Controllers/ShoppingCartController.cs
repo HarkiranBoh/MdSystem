@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using MedicalSystem.Models;
 using MedicalSystem.ViewModels;
-using Microsoft.AspNetCore.Http;
-using System.Runtime.Serialization.Json;
 using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -29,18 +23,22 @@ namespace MedicalSystem.Controllers
             _shoppingCart = shoppingCart;
         }
         
+
         [HttpGet]
-        //
         public IActionResult Index()
         {
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
 
+            //create a new ShoppingCartViewModel object
             var ShoppingCartViewModel = new ShoppingCartViewModel
             {
+                //set the poerperties in the view model to the instances defined here
                 ShoppingCart = _shoppingCart,
                 ShoppingCartTotal = _shoppingCart.GetShoppingCartTotal()
             };
+
+            //return the view - passing the shoppingCartViewModel 
             return View(ShoppingCartViewModel);
         }
 
@@ -60,20 +58,20 @@ namespace MedicalSystem.Controllers
             return RedirectToAction("Index");
             } 
 
+        //remove from the cart method - will remove an item from the cart
         public IActionResult RemoveFromCart(string data)
         {
             var jsonData = JsonConvert.DeserializeObject<ShoppingCartItem>(data);
-            
-            
-                _shoppingCart.RemoveFromCart(jsonData.ShoppingCartItemId);
-               
-            
+
+            _shoppingCart.RemoveFromCart(jsonData.ShoppingCartItemId);
+          
             return RedirectToAction("Index");
         }
 
+        //update the cart...
         public IActionResult UpdateCart(string data)
          {
-
+           
             //parse the data that's been sent
             var jsonData = JsonConvert.DeserializeObject<ShoppingCartItem>(data);
 
@@ -84,10 +82,11 @@ namespace MedicalSystem.Controllers
                 
         }
 
-
+        //this method will clear the cart using json deserialization - passing the data drom the view in as a parameter 
         public IActionResult ClearCart(string data)
         {
             var jsonData = JsonConvert.DeserializeObject<ShoppingCartViewModel>(data);
+            //apply the clear cart method to the data
             _shoppingCart.ClearCart(jsonData.ShoppingCartId);
            // return RedirectToAction("Index");
             string ReturnURL = "/Equipment/ShoppingCart/Index";
