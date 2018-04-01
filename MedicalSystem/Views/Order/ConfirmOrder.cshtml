@@ -1,16 +1,48 @@
 ﻿@model Order
 
+
+
 <h1>Its on its way...</h1>
 
-<h4>Order Confirmation: @Model.OrderId</h4>
+<h4>Order Confirmation: #@Model.OrderId</h4>
+
+<div class="container">
+    <h2>Progress</h2>
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" style="width:10%">
+            Order submitted
+        </div>
+        <div class="progress-bar progress-bar-warning" role="progressbar" style="width:50%">
+            In transit
+        </div>
+        <div class="progress-bar progress-bar-danger" role="progressbar" style="width:40%">
+            Delivered
+        </div>
+    </div>
+</div>
 
 
 
 <h2>Your Order summary</h2>
- @foreach (var order in Model.OrderLines)
- {
-     <div>@order.Equipment.Name</div>
-     <div>@order.Price</div>
-     <div>@order.Amount</div>
-     
- }
+<div class="row" style="margin-bottom: 20px;">
+    <ul>
+        @foreach (var order in Model.OrderLines)
+        {
+        <li class="list-group-item">
+            <p>@order.Equipment.Name</p>
+            <p>SubTotal: @order.Price.ToString("c")</p>
+            <p>Quantity: @order.Amount</p>
+        </li>
+         }
+        <li class="list-group-item">
+            <span>Total: £</span>
+        </li>
+    </ul>
+</div>
+
+<div class="map-container">
+    <div id="map"></div>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApujLnRwisuZTuhI49oado4E-7SWY_Qxs&callback=initMap"></script>
+    <script src="~/content/js/JavaScript.js"></script>
+</div>

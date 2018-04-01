@@ -13,119 +13,124 @@
     <link href="~/content/StyleSheet.css" rel="stylesheet" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="~/content/css/fontawesome-all.css" rel="stylesheet" />
-
+    <script src="~/content/js/JavaScript.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-to">
-        <div class="container">
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a></li>
-                    <li><a asp-controller="Home" asp-action="About" class="navbar-brand">About</a></li>
-                    <li><a asp-controller="Equipment" asp-action="Index" class="navbar-brand">Products</a></li>
-                    <li><a asp-controller="Feedback" asp-action="Index" class="navbar-brand">Contact Us</a></li>
+            <nav class="navbar navbar-inverse navbar-fixed-to">
+                <div class="container">
+                    <div class="navbar">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            
+                        <ul class="nav navbar-nav">
+                                <li><a asp-controller="Home" asp-action="Index" class="navbar-brand">Home</a></li>
+                                <li><a asp-controller="Home" asp-action="About" class="navbar-brand">About</a></li>
+                                <li><a asp-controller="Equipment" asp-action="Index" class="navbar-brand">Products</a></li>
+                                <li><a asp-controller="Feedback" asp-action="Index" class="navbar-brand">Contact Us</a></li>
 
-                </ul>
+                            </ul>
 
-                @if (SignInManager.IsSignedIn(User))
-                {
+                            @if (SignInManager.IsSignedIn(User))
+        {
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a>Hello @UserManager.GetUserName(User)!</a></li>
+                            <li><a asp-controller="Account" asp-action="Dashboard">Hello @UserManager.GetUserName(User)!</a></li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                             @await Component.InvokeAsync("ShoppingCartSummary")
                         </ul>
                     </form>
 
-                }
-                else
-                {
+}
+else
+{
                     <ul class="nav navbar-nav navbar-right">
                         <li><a id="registerLink" asp-controller="Account" asp-action="Register">Register</a></li>
                         <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
                         @await Component.InvokeAsync("ShoppingCartSummary")
-
-
                     </ul>
-                }
+}
 
-            </div>
-        </div>
-    </nav>
+                        </div>
+                    </div>
+            </nav>
 
-    <div class="container body-content">
+            <div class="container body-content">
 
-        <div class="row">
-            @RenderBody()
-        </div>
-    </div>
-    <footer>
-        <div class="footer" id="footer">
-            <div class="container">
                 <div class="row">
-                    <div class="col-lg-3  col-md-2 col-sm-4 col-xs-6">
-                        <h3> Help</h3>
-                        <ul>
-                            <li> <a href="#"> Contact Us </a> </li>
-                            <li> <a href="#"> Terms and Conditions </a> </li>
-                            <li> <a href="#"> Security, privacy and Cookies </a> </li>
-                            <li> <a href="#"> Site Map</a> </li>
-                        </ul>
-                    </div>
-                    <div class="col-lg-3  col-md-2 col-sm-4 col-xs-6">
-                        <h3> Delivery/Returns </h3>
-                        <ul>
-                            <li> <a href="#"> Delivery </a> </li>
-                            <li> <a href="#"> Delivery FAQ's</a> </li>
-                            <li> <a href="#"> Track my Order </a> </li>
-                            <li> <a href="#"> Returns and Refunds </a> </li>
-                        </ul>
-                    </div>
+                    @RenderBody()
+                </div>
+            </div>
+            <footer>
+                <div class="footer" id="footer">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-3  col-md-2 col-sm-4 col-xs-6">
+                                <h3> Help</h3>
+                                <ul>
+                                    <li> <a href="#"> Contact Us </a> </li>
+                                    <li> <a href="#"> Terms and Conditions </a> </li>
+                                    <li> <a href="#"> Security, privacy and Cookies </a> </li>
+                                    <li> <a href="#"> Site Map</a> </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-3  col-md-2 col-sm-4 col-xs-6">
+                                <h3> Delivery/Returns </h3>
+                                <ul>
+                                    <li> <a href="#"> Delivery </a> </li>
+                                    <li> <a href="#"> Delivery FAQ's</a> </li>
+                                    <li> <a href="#"> Track my Order </a> </li>
+                                    <li> <a href="#"> Returns and Refunds </a> </li>
+                                </ul>
+                            </div>
 
-                    <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
-                        <h3> Company </h3>
-                        <ul>
-                            <li> <a href="#"> About Us </a> </li>
-                            <li> <a href="#"> Careers </a> </li>
-                            <li> <a href="#"> Charity Foundation</a> </li>
-                            <li> <a href="#"> Statement </a> </li>
-                        </ul>
+                            <div class="col-lg-2  col-md-2 col-sm-4 col-xs-6">
+                                <h3> Company </h3>
+                                <ul>
+                                    <li> <a href="#"> About Us </a> </li>
+                                    <li> <a href="#"> Careers </a> </li>
+                                    <li> <a href="#"> Charity Foundation</a> </li>
+                                    <li> <a href="#"> Statement </a> </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
+                                <h3> Be Social </h3>
+                                <ul>
+                                    <li>
+                                        <div class="input-append newsletter-box text-center">
+                                            <input type="text" class="full text-center" placeholder="Email ">
+                                            <button class="btn  bg-gray" type="button"> Enter <i class="fas fa-long-arrow-alt-right"> </i> </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="social">
+                                    <li> <a href="#"> <i class="fab fa-facebook-f"> &nbsp; </i> </a> </li>
+                                    <li> <a href="#"> <i class="fab fa-twitter"> &nbsp; </i> </a> </li>
+                                    <li> <a href="#"> <i class="fab fa-google-plus"> &nbsp; </i> </a> </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--/.row-->
                     </div>
-                    <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
-                        <h3> Be Social </h3>
-                        <ul>
-                            <li>
-                                <div class="input-append newsletter-box text-center">
-                                    <input type="text" class="full text-center" placeholder="Email ">
-                                    <button class="btn  bg-gray" type="button"> Enter <i class="fas fa-long-arrow-alt-right"> </i> </button>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="social">
-                            <li> <a href="#"> <i class="fab fa-facebook-f"> &nbsp; </i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-twitter"> &nbsp; </i> </a> </li>
-                            <li> <a href="#"> <i class="fab fa-google-plus"> &nbsp; </i> </a> </li>
-                        </ul>
+                    <!--/.container-->
+                </div>
+                <!--/.footer-->
+                <div class="footer-bottom">
+                    <div class="container">
+                        <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>
+                        <div class="pull-right">
+                            <ul class="nav nav-pills payments">
+                                <li><i class="fab fa-cc-visa"></i></li>
+                                <li><i class="fab fa-cc-paypal"></i></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-                <!--/.row-->
-            </div>
-            <!--/.container-->
-        </div>
-        <!--/.footer-->
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>
-                <div class="pull-right">
-                    <ul class="nav nav-pills payments">
-                        <li><i class="fab fa-cc-visa"></i></li>
-                        <li><i class="fab fa-cc-paypal"></i></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--/.footer-bottom-->
-    </footer>
+                <!--/.footer-bottom-->
+            </footer>
 </body>
 </html>

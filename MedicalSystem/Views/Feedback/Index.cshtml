@@ -5,49 +5,50 @@
 <div class="map-container">
     <div id="map"></div>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyApujLnRwisuZTuhI49oado4E-7SWY_Qxs&callback=initMap"></script>
-    <script src="~/lib/bootstrap/js/JavaScript.js"></script>
 </div>
 
-
-<form asp-action="Index" method="post" class="form-horizontal" role="form">
-    <div class="form-group">
-        <label asp-for="Name" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="text-danger"></span>
+<div class="col-md-6 col-md-offset-4">
+    <h2 class="text-center">Contact Us!!</h2>
+    <p class="text-center">Please leave your message and we will contact you soon!</p>
+    <form asp-action="Index" method="post" class="form-horizontal center-block" role="form">
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="Email" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="Message" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <textarea asp-for="Message" class="form-control"></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
+        <div class="form-group">
+            <label asp-for="Message" class="col-md-2 control-label"></label>
+            <div class="col-md-5">
+                <textarea asp-for="Message" class="form-control"></textarea>
+                <span asp-validation-for="Message" class="text-danger"></span>
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <label asp-for="ConatctMe" class="col-md-2 control-label"></label>
-        <div class="col-md-5">
-            <input type="checkbox" asp-for="ConatctMe" class="form-control" />
+        <div class="form-group">
+            <label asp-for="ConatctMe" class="col-md-2 control-label">Contact</label>
+            <div class="col-md-5">
+                <input type="checkbox" asp-for="ConatctMe" class="form-control" />
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-5">
-            <input type="submit" class="btn btn-primary" value="Send feedback" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" class="btn btn-primary" value="Send" />
+            </div>
         </div>
-    </div>
 
-</form>
-
+    </form>
+</div>
 
 

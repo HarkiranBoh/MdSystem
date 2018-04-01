@@ -15,6 +15,14 @@
     clear: both;
     display: block;
 }
+#map {
+    height: 400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 30px;
+    margin-bottom: 70px;
+}
+
 
 /*the footer*/
 .footer {
@@ -25,6 +33,7 @@
     width: 100%;
     border-bottom: 1px solid #CCCCCC;
     border-top: 1px solid #DDDDDD;
+    margin-top: 10px;
 }
 
     .footer p {

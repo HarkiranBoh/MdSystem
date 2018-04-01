@@ -8,6 +8,9 @@ using MedicalSystem.ViewModels;
 using MedicalSystem.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using PayPal.Payments;
+using BraintreeHttp;
+using PayPal.Core;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -19,7 +22,6 @@ namespace MedicalSystem.Controllers
     {
         private readonly IOrderRepository _orderRepository;
         private readonly Checkout _checkout;
-
 
 
         //dependancy injecton constructor 
@@ -39,6 +41,7 @@ namespace MedicalSystem.Controllers
             string userId = HttpContext.User.Identity.Name;
             //get the logged in user details
             var loggedInUser = _checkout.GetLoggedInUserDetails(userId);
+
             
             //in the variable called CheckoutViewModel create a new checkout view model object setting the properties defined.
             var CheckoutViewModel = new CheckoutViewModel
@@ -55,6 +58,8 @@ namespace MedicalSystem.Controllers
                 ShoppingCartId = data
                 
             };
+
+
             //return the view with the variable - checkoutview passed in
             return View(CheckoutViewModel);
         }
@@ -64,20 +69,93 @@ namespace MedicalSystem.Controllers
         public IActionResult ConfirmOrder(CheckoutViewModel checkout)
         {
             //create an order object with the properties set
-            var order = new Order {
+            var order = new Models.Order
+            {
 
                 Name = checkout.FirstName + " " + checkout.LastName,
                 HospitalName = checkout.HospitalName,
                 HospitalAdress = checkout.AddressLine1 + " " + checkout.AddressLine2,
                 PostCode = checkout.PostCode,
                 ShoppingCartId = checkout.ShoppingCartId,
-                
+
             };
+
+
+            var payment = CreatePayment(order);
+            payment.Wait();
             //create the order 
             _orderRepository.CreateOrder(order);
             //then return the view.
             return View(order);
+           // return null;
         }
-    }
 
+
+        public async Task<Payment> CreatePayment(Models.Order order)
+        {
+            var environment = new SandboxEnvironment("AR97yArZjZHa8H0n_dMEdESg42-bGHjOKefiBPsnkmjKsdEHPaj2Q44PvqrOIYWXLEHTMUoU7qDIGiFK", "EO8bO7FIVq-JhiybhWN3rYTD-gRrvvC63q9OH2_v7zlY6gWEtB-p0kPceAn6f9TCq1Vu-D0fpGzVcx2N");
+            var client = new PayPalHttpClient(environment);
+
+            var payment = new Payment()
+            {
+                Intent = "sale",
+               
+                Transactions = new List<Transaction>()
+                {
+                   
+                    new Transaction()
+                    {
+                        ItemList = new ItemList()
+                        {
+                            Items = new List<Item>()
+                            {
+                             new Item
+                             {
+                                 Description = "med",
+                                 Price = (order.SubTotal).ToString(),
+                                 Quantity = "1",
+                             }   
+                            }
+                        },
+                        
+                        Amount = new Amount()
+                        {
+                            Total = (order.SubTotal).ToString(),
+                            
+                            Currency = "GBP"
+                        }
+                    }
+                },
+                RedirectUrls = new RedirectUrls()
+                {
+                    CancelUrl = Url.Action("Cancel", "Order", null, Request.Scheme),
+                    ReturnUrl = "https://example.com/return"
+                },
+                   Payer = new Payer()
+                {
+                       
+                    PaymentMethod = "paypal"
+                }
+            };
+
+            //send payment to PayPal
+            PaymentCreateRequest request = new PaymentCreateRequest();
+            request.RequestBody(payment);
+            Payment result = null;
+            try
+            {
+                HttpResponse response = await client.Execute(request);
+                var statusCode = response.StatusCode;
+                return response.Result<Payment>();
+            }
+            catch (HttpException httpException)
+            {
+                var statusCode = httpException.StatusCode;
+                var debugId = httpException.Headers.GetValues("PayPal-Debug-Id").FirstOrDefault();
+            }
+
+            return result;
+        }
+
+      }
 }
