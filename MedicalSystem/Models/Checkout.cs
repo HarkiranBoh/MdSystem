@@ -26,11 +26,19 @@ namespace MedicalSystem.Models
        public List<ShoppingCartItem> GetEquipment(string shoppingCartId)
         {
 
-            // return _appDbContext.ShoppingCartItems.Where(c => c.EquipmentId == shoppingCartItemId).Include(d => d.Equipment.Name == equipment);
             
             return _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == shoppingCartId).Include(s => s.Equipment).ToList();
 
         }
+
+        
+        public decimal GetShoppingCartTotal(string ShoppingCartId)
+        {
+            var total = _appDbContext.ShoppingCartItems.Where(c => c.ShoppingCartId == ShoppingCartId).Select(c => c.Equipment.Price * c.Amount).Sum();
+           
+            return total;
+        }
+
 
         public User GetLoggedInUserDetails(string userName)
         {

@@ -1,0 +1,114 @@
+﻿@model ProfileViewModel
+
+@using MedicalSystem.Authentication;
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> SignInManager
+
+@{
+    @if (SignInManager.IsSignedIn(User))
+    {
+  <!-- <h1> Weclome !</h1> -->
+
+        <h4>Orders</h4>
+
+        <h4>Edit Details</h4>
+
+        <hr class="mb-4">
+        <div class="col-md-8 order-md-1">
+
+        <form class="needs-validation" method="post">
+
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label asp-for="FirstName">First Name</label>
+                    <input asp-for="FirstName" class="form-control" id="firstName" value="@Model.FirstName">
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label asp-for="LastName">Last Name</label>
+                    <input asp-for="LastName" class="form-control" value="@Model.LastName">
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Email">Email</label>
+                <input asp-for="Email" class="form-control" value="@Model.Email">
+
+            </div>
+
+
+            <div class="mb-3">
+                <label asp-for="HospitalName">Hospital name</label>
+                <input asp-for="HospitalName" class="form-control" value="@Model.HospitalName">
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AddressLine1">Address</label>
+                <input asp-for="AddressLine1" class="form-control" value="@Model.AddressLine1">
+
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="AddressLine2">Address 2 <span class="text-muted">(Optional)</span></label>
+                <input asp-for="AddressLine2" class="form-control" value="@Model.AddressLine2">
+            </div>
+
+            <div class="row">
+
+
+                <div class="col-md-3 mb-3">
+                    <label asp-for="PostCode">Postcode</label>
+                    <input asp-for="PostCode" class="form-control" value="@Model.PostCode" >
+                </div>
+            </div>
+
+            <hr class="mb-4">
+
+            <!--Payment section -->
+            <h4 class="mb-3">Payment</h4>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-name">Name on card</label>
+                        <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                        <small class="text-muted">Full name as displayed on card</small>
+                        <div class="invalid-feedback">
+                            Name on card is required
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="cc-number">Credit card number</label>
+                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Credit card number is required
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">Expiration</label>
+                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Expiration date required
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="cc-expiration">CVV</label>
+                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                        <div class="invalid-feedback">
+                            Security code required
+                        </div>
+                    </div>
+
+                </div>
+                <hr class="mb-4 center-block">
+                <input class="btn btn-primary btn-lg btn-block" type="submit" name="save" value="save"  />
+        </form>
+      </div>
+
+    }
+}

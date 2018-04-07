@@ -20,6 +20,8 @@ namespace MedicalSystem.ViewModels
         public List<ShoppingCartItem> ShoppingCartItems { get; set; }
         public string ShoppingCartId { get; set; }
         public List<Equipment> Equipment { get; set; }
+        public decimal ShoppingCartTotal { get; set; }
+
 
         public string CardName { get; set; }
         public string CardNumber { get; set; }

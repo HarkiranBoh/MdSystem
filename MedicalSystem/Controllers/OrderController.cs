@@ -35,7 +35,7 @@ namespace MedicalSystem.Controllers
         [HttpGet]
         public IActionResult Checkout(string data)
         {
-        
+            var items2 = _checkout.GetShoppingCartTotal(data);
             var items = _checkout.GetEquipment(data);
             //get user information when logged in from httpcontext
             string userId = HttpContext.User.Identity.Name;
@@ -55,10 +55,9 @@ namespace MedicalSystem.Controllers
                 AddressLine2 = loggedInUser.AddressLine2,
                 PostCode = loggedInUser.PostCode,
                 ShoppingCartItems = items,
-                ShoppingCartId = data
-                
+                ShoppingCartId = data,
+                ShoppingCartTotal = items2
             };
-
 
             //return the view with the variable - checkoutview passed in
             return View(CheckoutViewModel);
@@ -77,17 +76,24 @@ namespace MedicalSystem.Controllers
                 HospitalAdress = checkout.AddressLine1 + " " + checkout.AddressLine2,
                 PostCode = checkout.PostCode,
                 ShoppingCartId = checkout.ShoppingCartId,
-
+                SubTotal = checkout.ShoppingCartTotal
             };
 
+            try
+            {
+                var payment = CreatePayment(order);
+                payment.Wait();
+                //create the order 
+                _orderRepository.CreateOrder(order);
+                //then return the view.
+                return View(order);
+            }
+            catch {
+                return View("~/Views/Order/PaymentFailed.cshtml");
 
-            var payment = CreatePayment(order);
-            payment.Wait();
-            //create the order 
-            _orderRepository.CreateOrder(order);
-            //then return the view.
-            return View(order);
-           // return null;
+            }
+                
+           
         }
 
 

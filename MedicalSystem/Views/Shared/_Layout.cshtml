@@ -39,7 +39,7 @@
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a asp-controller="Account" asp-action="Dashboard">Hello @UserManager.GetUserName(User)!</a></li>
+                            <li><a asp-controller="Home" asp-action="Dashboard">Hello @UserManager.GetUserName(User)!</a></li>
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                             @await Component.InvokeAsync("ShoppingCartSummary")
                         </ul>

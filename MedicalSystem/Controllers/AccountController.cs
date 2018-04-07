@@ -95,10 +95,6 @@ namespace MedicalSystem.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        public IActionResult Dashboard()
-        {
-            return View();
-        }
     }
 
 }

@@ -42,6 +42,7 @@ namespace MedicalSystem
             services.AddScoped<ShoppingCart>(sp => ShoppingCart.GetCart(sp));
             services.AddTransient<IOrderRepository, OrderRepository>();
             services.AddTransient<Checkout>();
+            services.AddTransient<ProfileRepository>();
             services.AddMvc();
 
             services.AddMemoryCache();

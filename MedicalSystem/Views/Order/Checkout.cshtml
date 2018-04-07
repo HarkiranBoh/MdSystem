@@ -14,156 +14,156 @@
 @{
     @if (SignInManager.IsSignedIn(User))
     {
-    <body class="bg-light">
-        <div class="container center-block">
-            <h2 class="center-block">
-                Check Out Now
-            </h2>
-            <div class="row" style="float: right; width:30%">
-                <div class="row">
-                    <h4 class="text-center">
-                        <span class="text-muted">Your cart</span>
-                    </h4>
-                    <ul class="list-group mb-3">
+        <body class="bg-light">
+            <div class="container center-block">
+                <h2 class="center-block">
+                    Check Out
+                </h2>
+                <div class="row" style="float: right; width:30%">
+                    <div class="row">
+                        <h4 class="text-center">
+                            <span class="text-muted">Your cart</span>
+                        </h4>
+                        <ul class="list-group mb-3">
 
-                        <!--a forech loop interating over the shoppingcart items -->
-                        @foreach (var item in Model.ShoppingCartItems)
-                          {
-                         <li class="list-group-item">
-                        <div>
-                            <h6 class="text-muted">@item.Equipment.Name</h6>
-                            <small class="text-muted">Quantity: @item.Amount</small>
-                        </div>
-                        <span class="text-muted">SubTotal: @item.SubTotal.ToString("c")</span>
-                        
-                          </li>
-                        }
-                         <li class="list-group-item">
-                        <span class=" text-muted">Total: </span>
-                    </li>
-                    </ul>
+                            <!--a forech loop interating over the shoppingcart items -->
+                            @foreach (var item in Model.ShoppingCartItems)
+                            {
+                                <li class="list-group-item">
+                                    <div>
+                                        <h6 class="text-muted">@item.Equipment.Name</h6>
+                                        <small class="text-muted">Quantity: @item.Amount</small>
+                                    </div>
+                                    <span class="text-muted">SubTotal: @item.SubTotal.ToString("c")</span>
+
+                                </li>
+                            }
+                            <li class="list-group-item">
+                                <span class=" text-muted">Total: @Model.ShoppingCartTotal.ToString("c")</span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
+                <hr class="mb-4">
+                <div class="col-md-8 order-md-1">
+                    <h4 class="mb-3">Shipping Address</h4>
 
+                    <form class="needs-validation" method="post" novalidate>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FirstName">First Name</label>
+                                <input asp-for="FirstName" class="form-control" id="firstName" value="@Model.FirstName" readonly>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LastName">Last Name</label>
+                                <input asp-for="LastName" class="form-control" value="@Model.LastName" readonly>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="UserName">Username</label>
+                            <input asp-for="UserName" class="form-control" id="username" value="@Model.UserName" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="Email">Email</label>
+                            <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
+
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label asp-for="HospitalName">Hospital name</label>
+                            <input asp-for="HospitalName" class="form-control" value="@Model.HospitalName" readonly>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AddressLine1">Address</label>
+                            <input asp-for="AddressLine1" class="form-control" value="@Model.AddressLine1" readonly>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="AddressLine2">Address 2 <span class="text-muted">(Optional)</span></label>
+                            <input asp-for="AddressLine2" class="form-control" value="@Model.AddressLine2" readonly>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5 mb-4">
+                                <label for="country">Country</label>
+                                <input class="form-control" id="country" value="United Kingdom" readonly>
+                            </div>
+
+                            <div class="col-md-3 mb-3">
+                                <label asp-for="PostCode">Postcode</label>
+                                <input asp-for="PostCode" class="form-control" value="@Model.PostCode" readonly>
+                            </div>
+                        </div>
+
+                        <hr class="mb-4">
+
+                        <!--Payment section -->
+                        <h4 class="mb-3">Payment</h4>
+
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                                <label class="custom-control-label" for="credit">Credit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="debit">Debit card</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                                <label class="custom-control-label" for="paypal">Paypal</label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-name">Name on card</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                                <small class="text-muted">Full name as displayed on card</small>
+                                <div class="invalid-feedback">
+                                    Name on card is required
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cc-number">Credit card number</label>
+                                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Credit card number is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">Expiration</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Expiration date required
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="cc-expiration">CVV</label>
+                                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                                <div class="invalid-feedback">
+                                    Security code required
+                                </div>
+                            </div>
+                            <!--hidden shoppingCartId-->
+                            <div>
+                                <input asp-for="ShoppingCartId" type="hidden" id="ShoppingCartId" value="@Model.ShoppingCartId" />
+                            </div>
+                        </div>
+                        <hr class="mb-4 center-block">
+                        <input class="btn btn-primary btn-lg btn-block" type="submit" asp-controller="Order" asp-action="ConfirmOrder" value="Confirm" />
+                    </form>
+                </div>
             </div>
-            <hr class="mb-4">
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Shipping Address</h4>
-
-                <form class="needs-validation" method="post" novalidate>
-
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="FirstName">First Name</label>
-                            <input asp-for="FirstName" class="form-control" id="firstName" value="@Model.FirstName" readonly>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label asp-for="LastName">Last Name</label>
-                            <input asp-for="LastName" class="form-control" value="@Model.LastName" readonly>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="UserName">Username</label>
-                        <input asp-for="UserName" class="form-control" id="username" value="@Model.UserName" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="Email">Email</label>
-                        <input asp-for="Email" class="form-control" value="@Model.Email" readonly>
-
-                    </div>
-
-
-                    <div class="mb-3">
-                        <label asp-for="HospitalName">Hospital name</label>
-                        <input asp-for="HospitalName" class="form-control" value="@Model.HospitalName" readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="AddressLine1">Address</label>
-                        <input asp-for="AddressLine1" class="form-control" value="@Model.AddressLine1" readonly>
-
-                    </div>
-
-                    <div class="mb-3">
-                        <label asp-for="AddressLine2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input asp-for="AddressLine2" class="form-control" value="@Model.AddressLine2" readonly>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5 mb-4">
-                            <label for="country">Country</label>
-                            <input class="form-control" id="country" value="United Kingdom" readonly>
-                        </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label asp-for="PostCode">Postcode</label>
-                            <input asp-for="PostCode" class="form-control" value="@Model.PostCode" readonly>
-                        </div>
-                    </div>
-                    
-                    <hr class="mb-4">
-
-                    <!--Payment section -->
-                    <h4 class="mb-3">Payment</h4>
-
-                    <div class="d-block my-3">
-                        <div class="custom-control custom-radio">
-                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                            <label class="custom-control-label" for="credit">Credit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                            <label class="custom-control-label" for="debit">Debit card</label>
-                        </div>
-                        <div class="custom-control custom-radio">
-                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                            <label class="custom-control-label" for="paypal">Paypal</label>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-name">Name on card</label>
-                            <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                            <small class="text-muted">Full name as displayed on card</small>
-                            <div class="invalid-feedback">
-                                Name on card is required
-                            </div>
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="cc-number">Credit card number</label>
-                            <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Credit card number is required
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">Expiration</label>
-                            <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Expiration date required
-                            </div>
-                        </div>
-                        <div class="col-md-3 mb-3">
-                            <label for="cc-expiration">CVV</label>
-                            <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                            <div class="invalid-feedback">
-                                Security code required
-                            </div>
-                        </div>
-                        <!--hidden shoppingCartId-->
-                        <div>
-                            <input asp-for="ShoppingCartId" type="hidden" id="ShoppingCartId" value="@Model.ShoppingCartId" />
-                        </div>
-                    </div>
-                    <hr class="mb-4 center-block">
-                    <input class="btn btn-primary btn-lg btn-block" type="submit" asp-controller="Order" asp-action="ConfirmOrder" value="Confirm" />
-                </form>
-            </div>
-        </div>
-    </body>
+        </body>
 
     }
 }
