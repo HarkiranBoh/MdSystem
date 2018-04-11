@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MedicalSystem.ViewModels
 {
+    //view model for the resiger page - get, set properties of the register 
     public class RegisterViewModel
     {
         [Required]

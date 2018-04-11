@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MedicalSystem.Models;
 using MedicalSystem.ViewModels;
-using MedicalSystem.Authentication;
-using Microsoft.AspNetCore.Identity;
-using Newtonsoft.Json;
 using PayPal.Payments;
 using BraintreeHttp;
 using PayPal.Core;
+using System;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,7 +28,7 @@ namespace MedicalSystem.Controllers
             _checkout = checkout;
             
         }
-        //returns the checkout page
+        //returns the checkout page - takes parameter called data.
         [HttpGet]
         public IActionResult Checkout(string data)
         {
@@ -85,8 +82,10 @@ namespace MedicalSystem.Controllers
                 payment.Wait();
                 //create the order 
                 _orderRepository.CreateOrder(order);
+               
                 //then return the view.
                 return View(order);
+                
             }
             catch {
                 return View("~/Views/Order/PaymentFailed.cshtml");
@@ -97,10 +96,12 @@ namespace MedicalSystem.Controllers
         }
 
 
+        //Paypal payment
         public async Task<Payment> CreatePayment(Models.Order order)
         {
             var environment = new SandboxEnvironment("AR97yArZjZHa8H0n_dMEdESg42-bGHjOKefiBPsnkmjKsdEHPaj2Q44PvqrOIYWXLEHTMUoU7qDIGiFK", "EO8bO7FIVq-JhiybhWN3rYTD-gRrvvC63q9OH2_v7zlY6gWEtB-p0kPceAn6f9TCq1Vu-D0fpGzVcx2N");
             var client = new PayPalHttpClient(environment);
+
 
             var payment = new Payment()
             {
@@ -117,8 +118,9 @@ namespace MedicalSystem.Controllers
                             {
                              new Item
                              {
-                                 Description = "med",
+                                 Description = "medical equipment",
                                  Price = (order.SubTotal).ToString(),
+                                 Currency = "GBP",
                                  Quantity = "1",
                              }   
                             }
@@ -144,6 +146,8 @@ namespace MedicalSystem.Controllers
                 }
             };
 
+           
+
             //send payment to PayPal
             PaymentCreateRequest request = new PaymentCreateRequest();
             request.RequestBody(payment);
@@ -163,5 +167,6 @@ namespace MedicalSystem.Controllers
             return result;
         }
 
+        
       }
 }

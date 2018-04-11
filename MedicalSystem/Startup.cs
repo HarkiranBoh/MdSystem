@@ -45,6 +45,13 @@ namespace MedicalSystem
             services.AddTransient<ProfileRepository>();
             services.AddMvc();
 
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("AdministratorOnly", policy => policy.RequireRole("Administrator"));
+              
+                
+            });
+
             services.AddMemoryCache();
             services.AddSession();
         }

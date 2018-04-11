@@ -2,6 +2,7 @@
 using MedicalSystem.Models;
 using MedicalSystem.ViewModels;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,6 +10,7 @@ namespace MedicalSystem.Controllers
 {
     //this defines the route url of the shopping cart page - this will route to the equipment/the controller - shoppingCart - the action/ which is defined in this class
     [Route("Equipment/[controller]/[action]/{data?}")]
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         //private fields made for the IequipmentRepository and the ShoppingCart
@@ -23,10 +25,11 @@ namespace MedicalSystem.Controllers
             _shoppingCart = shoppingCart;
         }
         
-
+        //Httpget method
         [HttpGet]
         public IActionResult Index()
         {
+            //var items contains the shopping Cart items 
             var items = _shoppingCart.GetShoppingCartItems();
             _shoppingCart.ShoppingCartItems = items;
 
@@ -68,7 +71,7 @@ namespace MedicalSystem.Controllers
             return RedirectToAction("Index");
         }
 
-        //update the cart...
+        //update the cart...with the parameter data
         public IActionResult UpdateCart(string data)
          {
            
@@ -78,8 +81,8 @@ namespace MedicalSystem.Controllers
             //call Updatecart method in model and pass data
             _shoppingCart.UpdateCart(jsonData.ShoppingCartItemId, jsonData.EquipmentId, jsonData.Amount);
 
-            return RedirectToAction("Index");
-                
+            //Will redirect to the action called Index in the shopping cart contoller
+            return RedirectToAction("Index");         
         }
 
         //this method will clear the cart using json deserialization - passing the data drom the view in as a parameter 

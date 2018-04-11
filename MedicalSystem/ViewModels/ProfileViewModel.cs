@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+﻿/*
+ The view model for the profile of the user that can be editable
+ This is for the dashboard.cshtml
+ */
 namespace MedicalSystem.ViewModels
 {
     public class ProfileViewModel

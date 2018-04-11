@@ -32,27 +32,12 @@ namespace MedicalSystem.Controllers
             return View();
         }
 
-        //route attribut will route to the about url
+        //route attribute will route to the about url
         [Route("About")]
         public IActionResult About()
         {
             return View();
         }
-
-       // [HttpGet]
-        //[Route("Dashboard")]
-        //public IActionResult Dashboard()
-        //{
-          //  return View();
-        //}
-
-        // [HttpPost]
-        //public IActionResult Dashboard(ProfileViewModel profileView)
-        //{
-        //  var profile = new User();
-        // profile.FirstName = profileView.FirstName;
-        //return View("Dashboord", profile);
-        //}
 
         //only invoke for http invoke
         [HttpGet]
@@ -67,6 +52,7 @@ namespace MedicalSystem.Controllers
             //in the variable called CheckoutViewModel create a new checkout view model object setting the properties defined.
             var profileViewModel = new ProfileViewModel
             {
+                //set the values from ProfileViewModel to the local variable 
                 UserName = loggedInUser.UserName,
                 FirstName = loggedInUser.FirstName,
                 LastName = loggedInUser.LastName,
@@ -82,10 +68,11 @@ namespace MedicalSystem.Controllers
             return View(profileViewModel);
         }
 
-        //route contraints
+        //route constraints
         [HttpPost]
         public IActionResult Dashboard(ProfileViewModel profileViewModel)
         {
+            //the userId will be taken from the HttpContext class
             string userId = HttpContext.User.Identity.Name;
 
              _profileRepository.UpdateUser(userId, profileViewModel);
