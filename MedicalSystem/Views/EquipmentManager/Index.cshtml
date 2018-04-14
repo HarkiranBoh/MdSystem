@@ -23,7 +23,7 @@
                     <td>@equipment.Id</td>
                     <td><img style="width: 400px; height: 200px;" src="@equipment.ImageThumbnailUrl" /></td>
                     <td>@equipment.Name</td>
-                    <td>@equipment.InStock</td>
+                    <td><input type="checkbox" asp-for="@equipment.InStock" /> </td>
                     <td>@equipment.Price</td>
                     <td>
                         <form asp-action="DeleteEquipment" asp-route-Id="@equipment.Id" method="post">
