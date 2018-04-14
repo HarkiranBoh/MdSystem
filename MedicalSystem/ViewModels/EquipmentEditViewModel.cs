@@ -9,6 +9,6 @@ namespace MedicalSystem.ViewModels
     public class EquipmentEditViewModel
     {
         public Equipment Equipment { get; set; }
-        
+        public string EquipmentId { get; set; }
     }
 }

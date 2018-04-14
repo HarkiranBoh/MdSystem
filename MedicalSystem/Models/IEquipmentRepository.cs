@@ -11,5 +11,6 @@ namespace MedicalSystem.Models
         void CreateEquipment(Equipment equipment);
 
         void UpdateEquipment(Equipment equipment);
+        void DeleteEquipment(int id);
     }
 }

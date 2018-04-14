@@ -16,7 +16,15 @@ namespace MedicalSystem.Components
                     DisplayValue = "User management",
                     ActionValue = "UserManagement"
 
-                }};
+                },
+
+            new AdminMenuItem()
+            {
+                DisplayValue = "Role management",
+                ActionValue = "RoleManagement"
+
+            }};
+
 
             return View(menuItems);
         }

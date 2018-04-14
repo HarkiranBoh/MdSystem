@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<Equipment>
 
-    <h2>equipment Management</h2>
+    <h2>Equipment Management</h2>
 
     @if (!Model.Any())
     {
@@ -21,12 +21,12 @@
             {
                 <tr>
                     <td>@equipment.Id</td>
-                    <td><img style="width: 200px; height: 200px;" src="@equipment.ImageThumbnailUrl" /></td>
+                    <td><img style="width: 400px; height: 200px;" src="@equipment.ImageThumbnailUrl" /></td>
                     <td>@equipment.Name</td>
-                    
+                    <td>@equipment.InStock</td>
                     <td>@equipment.Price</td>
                     <td>
-                        <form asp-action="DeleteEquipment" asp-route-equipmentId="@equipment.Id" method="post">
+                        <form asp-action="DeleteEquipment" asp-route-Id="@equipment.Id" method="post">
                             <a class="btn btn-sm btn-primary" asp-action="EditEquipment" asp-route-Id="@equipment.Id">Edit</a>
                             <button type="submit" onclick="return confirm('Do you really want to delete this equipment?');" class="btn btn-sm btn-danger">
                                 Delete
@@ -39,6 +39,5 @@
     }
     <p>
         <a class="btn btn-primary" asp-action="AddEquipment">Add new equipment</a>
-        <a class="btn btn-primary" asp-action="QuickEdit">Edit equipment names</a>
-        <a class="btn btn-primary" asp-action="BulkEditEquipments">Edit equipments in bulk</a>
+        
     </p>

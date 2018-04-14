@@ -8,24 +8,39 @@
 <!--JavaScript for the Ajax functions that send the data from the view to the controller-->
 <script type="text/javascript">
 //the update quantity parameters id, equipmentId and amount
+//api.jquery.com/jquery.post/ to fix the refresh issue on the shopping cart page.
 function UpdateQuantity(id, equipmentId, amount)
 {
     var data = { ShoppingCartItemId: id, EquipmentId: equipmentId, Amount: amount };
-    $.post("/Equipment/ShoppingCart/UpdateCart/"+JSON.stringify(data));
+    $.post("/Equipment/ShoppingCart/UpdateCart/" + JSON.stringify(data), null,
+        function ()
+        {
+            //www.w3schools.com/jsref/met_loc_reload.asp for the reloading of the page.
+            location.reload();
+
+        });
     }
 //parameter is the shopping cart item id 
 function RemoveShoppingCartItem(id)
     {
         var remove = { ShoppingCartItemId: id }
-        $.post("/Equipment/ShoppingCart/RemoveFromCart/" + JSON.stringify(remove));
+        $.post("/Equipment/ShoppingCart/RemoveFromCart/" + JSON.stringify(remove), null,
+            function ()
+            {
+                location.reload();
+
+            });
 
     }
     //this clear takes the shoppingCartId
     function ClearShoppingCart(shoppingCartId)
     {
         var clear = { ShoppingCartId: shoppingCartId }
-        $.post("/Equipment/ShoppingCart/ClearCart/" + JSON.stringify(clear));
-        Onsuccess(function (retURL) { location.replace(retURL); })
+        $.post("/Equipment/ShoppingCart/ClearCart/" + JSON.stringify(clear), null,
+            function ()
+            {
+                location.reload();
+            });
 
 
     }

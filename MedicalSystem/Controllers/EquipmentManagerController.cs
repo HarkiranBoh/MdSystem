@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MedicalSystem.Controllers
 {
-   // [Authorize(Roles = "Administrators")]
+      [Authorize(Roles = "Administrators")]
     //[Authorize(Policy = "DeleteEquipment")]
     public class EquipmentManagerController : Controller
     {
@@ -46,9 +46,9 @@ namespace MedicalSystem.Controllers
             public IActionResult AddEquipment(EquipmentEditViewModel equipmentEditViewModel)
             {
                 //custom validation rules
-               // if (ModelState.GetValidationState("Equipment.Price") == ModelValidationState.Valid
-                 //   || equipmentEditViewModel.Equipment.Price < 0)
-                   // ModelState.AddModelError(nameof(equipmentEditViewModel.Equipment.Price), "The price of the equipment should be higher than 0");
+              // if (ModelState.GetValidationState("Equipment.Price") == ModelValidationState.Valid
+                //   || equipmentEditViewModel.Equipment.Price < 0)
+                  // ModelState.AddModelError(nameof(equipmentEditViewModel.Equipment.Price), "The price of the equipment should be higher than 0");
 
                
 
@@ -61,28 +61,22 @@ namespace MedicalSystem.Controllers
                 return View(equipmentEditViewModel);
             }
 
-            //public IActionResult EditPie([FromRoute]int pieId)
-            //public IActionResult EditPie([FromQuery]int pieId, [FromHeader] string accept)
-            public IActionResult EditEquipment([FromQuery]int equipmentId, [FromHeader(Name = "Accept-Language")] string accept)
-            {
-                
 
-                var equipment = _equipmentRepository.GetAllEquipment().OrderBy(e => e.Name);
+        [HttpGet]
+        public IActionResult EditEquipment(int Id)
+        {
+            var equipment = _equipmentRepository.GetAllEquipment().OrderBy(e => e.Name);
 
             var equipmentEditViewModel = new EquipmentEditViewModel
             {
 
-                
+                EquipmentId = Id.ToString()
 
             };
+            return View(equipmentEditViewModel);
+        }
 
-               
-
-                return View(equipmentEditViewModel);
-            }
-
-            [HttpPost]
-            //public IActionResult EditPie([Bind("Pie")] PieEditViewModel pieEditViewModel)
+        [HttpPost]
             public IActionResult EditEquipment(EquipmentEditViewModel equipmentEditViewModel)
             {
             equipmentEditViewModel.Equipment.Id= equipmentEditViewModel.Equipment.Id;
@@ -96,36 +90,12 @@ namespace MedicalSystem.Controllers
             }
 
             [HttpPost]
-            public IActionResult DeleteEquipment(string equipmentId)
+            public IActionResult DeleteEquipment(int Id)
             {
-                return View();
-            }
+            _equipmentRepository.DeleteEquipment(Id);
+            return RedirectToAction("Index");
+        }
 
-            public IActionResult QuickEdit()
-            {
-                var equipmentNames = _equipmentRepository.GetAllEquipment().Select(p => p.Name).ToList();
-                return View(equipmentNames);
-            }
-
-            [HttpPost]
-            public IActionResult QuickEdit(List<string> equipmentNames)
-            {
-                //Do awesome things with the pie names here
-                return View();
-            }
-
-            public IActionResult BulkEditEquipments()
-            {
-                var equipmentNames = _equipmentRepository.GetAllEquipment().ToList();
-                return View(equipmentNames);
-            }
-
-            [HttpPost]
-            public IActionResult BulkEditEquipment(List<Equipment> equipment)
-            {
-                //Do awesome things with the pie here
-                return View();
-            }
 
             [AcceptVerbs("Get", "Post")]
             public IActionResult CheckIfPieNameAlreadyExists([Bind(Prefix = "Equipment.Name")]string name)

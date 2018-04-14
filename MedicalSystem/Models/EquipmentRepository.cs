@@ -35,5 +35,12 @@ namespace MedicalSystem.Models
             _appDbContext.Equipment.Add(equipment);
             _appDbContext.SaveChanges();
         }
+
+        public void DeleteEquipment(int id)
+        {
+            var rec = GetEquipmentById(id);
+            _appDbContext.Equipment.Remove(rec);
+            _appDbContext.SaveChanges();
+        }
     }
 }

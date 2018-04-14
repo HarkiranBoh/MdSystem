@@ -48,8 +48,7 @@ namespace MedicalSystem
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("AdministratorOnly", policy => policy.RequireRole("Administrator"));
-                options.AddPolicy("DeleteEquipment", policy => policy.RequireClaim("Delete Equipment", "Delete Equipment"));
-                options.AddPolicy("AddEquipment", policy => policy.RequireClaim("Add Equipment", "Add Equipment"));
+                
 
             });
 
