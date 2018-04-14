@@ -23,5 +23,17 @@ namespace MedicalSystem.Models
         {
             return _appDbContext.Equipment.FirstOrDefault(e => e.Id == equipmentId);
         }
+
+        public void UpdateEquipment(Equipment equipment)
+        {
+            _appDbContext.Equipment.Update(equipment);
+            _appDbContext.SaveChanges();
+        }
+
+        public void CreateEquipment(Equipment equipment)
+        {
+            _appDbContext.Equipment.Add(equipment);
+            _appDbContext.SaveChanges();
+        }
     }
 }

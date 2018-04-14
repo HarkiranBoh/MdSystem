@@ -17,11 +17,7 @@ namespace MedicalSystem.Models
         }
 
 
-        // public User GetDetails()
-        //{
-        //  _appDbContext.Users.Where(x=> x.FirstName)
-
-        //}
+        
         public void UpdateUser(string userName, ProfileViewModel profileViewModel)
         {
             var rec = _appDbContext.Users.Where(usr => usr.UserName == userName).FirstOrDefault();

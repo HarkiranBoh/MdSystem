@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Equipment>
+
+    <h2>equipment Management</h2>
+
+    @if (!Model.Any())
+    {
+        <tr><td colspan="3" class="text-center">No equipments at this point :()</td></tr>
+    }
+    else
+    {
+        <table class="table table-condensed table-bordered">
+            <tr>
+                <th>equipment ID</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>In stock</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+            @foreach (var equipment in Model)
+            {
+                <tr>
+                    <td>@equipment.Id</td>
+                    <td><img style="width: 200px; height: 200px;" src="@equipment.ImageThumbnailUrl" /></td>
+                    <td>@equipment.Name</td>
+                    
+                    <td>@equipment.Price</td>
+                    <td>
+                        <form asp-action="DeleteEquipment" asp-route-equipmentId="@equipment.Id" method="post">
+                            <a class="btn btn-sm btn-primary" asp-action="EditEquipment" asp-route-Id="@equipment.Id">Edit</a>
+                            <button type="submit" onclick="return confirm('Do you really want to delete this equipment?');" class="btn btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    <p>
+        <a class="btn btn-primary" asp-action="AddEquipment">Add new equipment</a>
+        <a class="btn btn-primary" asp-action="QuickEdit">Edit equipment names</a>
+        <a class="btn btn-primary" asp-action="BulkEditEquipments">Edit equipments in bulk</a>
+    </p>

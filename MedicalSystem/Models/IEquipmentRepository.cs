@@ -7,5 +7,9 @@ namespace MedicalSystem.Models
     {
         IEnumerable<Equipment> GetAllEquipment();
         Equipment GetEquipmentById(int equipmentId);
+
+        void CreateEquipment(Equipment equipment);
+
+        void UpdateEquipment(Equipment equipment);
     }
 }

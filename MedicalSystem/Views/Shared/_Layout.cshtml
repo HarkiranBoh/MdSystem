@@ -48,10 +48,18 @@
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                             @await Component.InvokeAsync("ShoppingCartSummary")
                             @await Component.InvokeAsync("AdminMenu")
+                            <li class="dropdown">
+                                <a asp-controller="EquipmentManager"
+                                   asp-action="Index">Equipment Management</a>
+                            </li>
 
                             @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrators"))
     {
                         @await Component.InvokeAsync("AdminMenu")
+                        <li class="dropdown">
+                            <a asp-controller="EquipmentManager"
+                               asp-action="Index">Equipment Management</a>
+                        </li>
 
 }
                         </ul>

@@ -1,0 +1,68 @@
+﻿@model EquipmentEditViewModel
+
+<h2>Create a new pie</h2>
+
+<form asp-controller="EquipmentManager" asp-action="AddEquipment" method="post" class="form-horizontal" role="form">
+    <h4>Enter the pie details below</h4>
+    <hr />
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="form-group">
+        <label asp-for="Equipment.Name" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Equipment.Name" class="form-control" />
+            <span asp-validation-for="Equipment.Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Equipment.ShortDescription" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Equipment.ShortDescription" class="form-control" />
+            <span asp-validation-for="Equipment.ShortDescription" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Equipment.LongDescription" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Equipment.LongDescription" class="form-control" />
+            <span asp-validation-for="Equipment.LongDescription" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Equipment.Price" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Equipment.Price" class="form-control" />
+            <span asp-validation-for="Equipment.Price" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Equipment.ImageThumbnailUrl" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Equipment.ImageThumbnailUrl" class="form-control" />
+            <span asp-validation-for="Equipment.ImageThumbnailUrl" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Equipment.ImageUrl" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Equipment.ImageUrl" class="form-control" />
+            <span asp-validation-for="Equipment.ImageUrl" class="text-danger"></span>
+        </div>
+    </div>
+
+   
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-primary" value="Create Equipment" />
+        </div>
+    </div>
+</form>
+
