@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace MedicalSystem.Controllers
 {
       [Authorize(Roles = "Administrators")]
-    //[Authorize(Policy = "DeleteEquipment")]
+    
     public class EquipmentManagerController : Controller
     {
           

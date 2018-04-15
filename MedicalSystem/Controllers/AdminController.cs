@@ -12,7 +12,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalSystem.Controllers
 {
-  [Authorize(Roles="Administrator")]
+  [Authorize(Roles="Administrators")]
+  [Route("[controller]/[action]")]
     public class AdminController : Controller
     {
         //using the UserManger class to work the users of the aplication

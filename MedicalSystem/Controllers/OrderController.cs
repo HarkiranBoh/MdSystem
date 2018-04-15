@@ -8,6 +8,9 @@ using PayPal.Payments;
 using BraintreeHttp;
 using PayPal.Core;
 using System;
+using System.Net.Mail;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using System.Net;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -78,11 +81,20 @@ namespace MedicalSystem.Controllers
 
             try
             {
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com");
+                smtp.EnableSsl = true;
+                smtp.Port = 587;
+                smtp.Credentials = new NetworkCredential("h.bohania@gmail.com",
+                   "akakaamazing");
+                smtp.Send("h.bohania@gmail.com", "harkiran_bohania@hotmail.co.uk",
+                   "Order Confirmation", "Thank you for your order! Its on its way!" + order.OrderPlaced);
+
+
                 var payment = CreatePayment(order);
                 payment.Wait();
                 //create the order 
                 _orderRepository.CreateOrder(order);
-               
+
                 //then return the view.
                 return View(order);
                 
