@@ -31,7 +31,7 @@ namespace MedicalSystem.Controllers
             return View(homeViewModel);
         }
 
-      
+      //Returns the details of a specific equipment with the id of the equipment being passed in
         public IActionResult Details(int id)
         {
             var Equipment = _equipmentRepository.GetEquipmentById(id);

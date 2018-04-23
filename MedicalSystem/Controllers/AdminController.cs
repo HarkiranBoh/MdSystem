@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace MedicalSystem.Controllers
 {
+    //specified the role who has permission to access the methods on this controller.
   [Authorize(Roles="Administrators")]
   [Route("[controller]/[action]")]
     public class AdminController : Controller
@@ -56,21 +57,21 @@ namespace MedicalSystem.Controllers
                 UserName = addUserViewModel.UserName,
                 Email = addUserViewModel.Email,
             };
-
+            //creates the user asyncronously 
             IdentityResult result = await _userManager.CreateAsync(user, addUserViewModel.Password);
 
             if (result.Succeeded)
             {
                 return RedirectToAction("UserManagement", _userManager.Users);
             }
-
+            //adds valiadation errors
             foreach (IdentityError error in result.Errors)
             {
                 ModelState.AddModelError("", error.Description);
             }
             return View(addUserViewModel);
         }
-        //will create the 
+        //edit view mosel will store the changes asynchrounously
         public async Task<IActionResult> EditUser(string id)
         {
             var user = await _userManager.FindByIdAsync(id);
@@ -78,7 +79,7 @@ namespace MedicalSystem.Controllers
             if (user == null)
                 return RedirectToAction("UserManagement", _userManager.Users);
 
-            var claims = await _userManager.GetClaimsAsync(user);
+            //var claims = await _userManager.GetClaimsAsync(user);
             var vm = new EditUserViewModel() { Id = user.Id, Email = user.Email, UserName = user.UserName, HospitalName = user.HospitalName};
 
             return View(vm);

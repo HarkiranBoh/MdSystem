@@ -81,11 +81,12 @@ namespace MedicalSystem.Controllers
 
             try
             {
+                //sending of email but with hardcoded email addresses
                 SmtpClient smtp = new SmtpClient("smtp.gmail.com");
                 smtp.EnableSsl = true;
                 smtp.Port = 587;
                 smtp.Credentials = new NetworkCredential("h.bohania@gmail.com",
-                   "akakaamazing");
+                   "Password123");
                 smtp.Send("h.bohania@gmail.com", "harkiran_bohania@hotmail.co.uk",
                    "Order Confirmation", "Thank you for your order! Its on its way!" + order.OrderPlaced);
 

@@ -17,7 +17,7 @@ namespace MedicalSystem.Models
         }
 
 
-        
+        //updates the user details  with the usernsame and profoleviewmodel being passed in.
         public void UpdateUser(string userName, ProfileViewModel profileViewModel)
         {
             var rec = _appDbContext.Users.Where(usr => usr.UserName == userName).FirstOrDefault();
@@ -35,6 +35,7 @@ namespace MedicalSystem.Models
             }
         }
 
+        //get logged on user details for updating
         public User GetLoggedInUserDetails(string userName)
         {
             var rec = _appDbContext.Users.Where(usr => usr.UserName == userName).FirstOrDefault();

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MedicalSystem.Models
 {
+    //the database tables defined here
     public class AppDbContext : IdentityDbContext<ApplicationUser>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -21,8 +22,6 @@ namespace MedicalSystem.Models
         public DbSet<ShoppingCartItem> ShoppingCartItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Hospital> Hospital { get; set; }
-       
         public DbSet<Stock> StockSupplier { get; set; }
     }
 

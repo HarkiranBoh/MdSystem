@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MedicalSystem", "MedicalSystem\MedicalSystem.csproj", "{65D7EA80-7E7A-4F58-A3A8-65BF6FA78A4D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{17448BF9-4D26-4430-9112-80A11CBA578C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MedicalSystem.Tests", "MedicalSystem.Tests\MedicalSystem.Tests.csproj", "{ADF4D05C-6D05-4F69-A3E3-7D32F41BAD76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +19,16 @@ Global
 		{65D7EA80-7E7A-4F58-A3A8-65BF6FA78A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{65D7EA80-7E7A-4F58-A3A8-65BF6FA78A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{65D7EA80-7E7A-4F58-A3A8-65BF6FA78A4D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADF4D05C-6D05-4F69-A3E3-7D32F41BAD76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF4D05C-6D05-4F69-A3E3-7D32F41BAD76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF4D05C-6D05-4F69-A3E3-7D32F41BAD76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF4D05C-6D05-4F69-A3E3-7D32F41BAD76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{ADF4D05C-6D05-4F69-A3E3-7D32F41BAD76} = {17448BF9-4D26-4430-9112-80A11CBA578C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9C659A0E-B67F-4ACE-B6A0-EE1B979A2608}

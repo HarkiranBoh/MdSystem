@@ -14,7 +14,6 @@ namespace MedicalSystem.Models
             {
                 context.AddRange
               (
-            new Equipment { Id = 1, Name = "Product1", Price = 12.95M, ShortDescription = "Test", LongDescription = "Test_Long.", ImageUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepie.jpg",  ImageThumbnailUrl = "https://gillcleerenpluralsight.blob.core.windows.net/files/applepiesmall.jpg" }
            
             );
 

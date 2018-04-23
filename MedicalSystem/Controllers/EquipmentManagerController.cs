@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace MedicalSystem.Controllers
 {
+    //Authorise the roles that have the Adminstrators role
       [Authorize(Roles = "Administrators")]
     
     public class EquipmentManagerController : Controller
@@ -19,12 +20,14 @@ namespace MedicalSystem.Controllers
           
         private IEquipmentRepository _equipmentRepository;
 
+        //dependancy injection
         public EquipmentManagerController(IEquipmentRepository equipmentRepository)
             {
                 _equipmentRepository = equipmentRepository;
                
             }
 
+        //view index that returns all the equipment 
             public ViewResult Index()
             {
                 
@@ -32,6 +35,7 @@ namespace MedicalSystem.Controllers
             return View(equipment);
             }
 
+        //Action method - Add equipment that returns the edit view model
             public IActionResult AddEquipment()
             {
                  var equipment = _equipmentRepository.GetAllEquipment();
@@ -42,6 +46,7 @@ namespace MedicalSystem.Controllers
                 return View(equipmentEditViewModel);
             }
 
+        //post attribute will only be invoked for post requests
             [HttpPost]
             public IActionResult AddEquipment(EquipmentEditViewModel equipmentEditViewModel)
             {
@@ -51,9 +56,10 @@ namespace MedicalSystem.Controllers
                   // ModelState.AddModelError(nameof(equipmentEditViewModel.Equipment.Price), "The price of the equipment should be higher than 0");
 
                
-
+            //checks to see if inputed data is valig
                 if (ModelState.IsValid)
                 {
+                //this will create the Equipment and store it in the database. The page will then redirect to the current page
                     _equipmentRepository.CreateEquipment(equipmentEditViewModel.Equipment);
                     return RedirectToAction("Index");
                 }
@@ -61,7 +67,7 @@ namespace MedicalSystem.Controllers
                 return View(equipmentEditViewModel);
             }
 
-
+        //get request that will get edit equipment with the equipment id being passed
         [HttpGet]
         public IActionResult EditEquipment(int Id)
         {
@@ -75,7 +81,7 @@ namespace MedicalSystem.Controllers
             };
             return View(equipmentEditViewModel);
         }
-
+        //seperate HTTP post for the edit equipment will update the changes and pass the view back.
         [HttpPost]
             public IActionResult EditEquipment(EquipmentEditViewModel equipmentEditViewModel)
             {
@@ -89,6 +95,7 @@ namespace MedicalSystem.Controllers
                 return View(equipmentEditViewModel);
             }
 
+        //delete will get the id of the equipment needing to be deleted.
             [HttpPost]
             public IActionResult DeleteEquipment(int Id)
             {
@@ -97,11 +104,11 @@ namespace MedicalSystem.Controllers
         }
 
 
-            [AcceptVerbs("Get", "Post")]
-            public IActionResult CheckIfPieNameAlreadyExists([Bind(Prefix = "Equipment.Name")]string name)
-            {
-                var equipment = _equipmentRepository.GetAllEquipment().FirstOrDefault(p => p.Name == name);
-                return equipment == null ? Json(true) : Json("That name is already taken");
-            }
+            //[AcceptVerbs("Get", "Post")]
+            //public IActionResult CheckIfEquipmentNameAlreadyExists([Bind(Prefix = "Equipment.Name")]string name)
+            //{
+            //    var equipment = _equipmentRepository.GetAllEquipment().FirstOrDefault(p => p.Name == name);
+            //    return equipment == null ? Json(true) : Json("That name is already taken");
+            //}
         }
 }

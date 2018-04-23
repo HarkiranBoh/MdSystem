@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace MedicalSystem.Models
 {
+    //this class was used in the checkout and dashboard page.
     public class User
     {
         public string FirstName { get; set;}

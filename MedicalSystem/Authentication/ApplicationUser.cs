@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+//this class allows for extending IdentityUser
 namespace MedicalSystem.Authentication
 {
     public class ApplicationUser : IdentityUser

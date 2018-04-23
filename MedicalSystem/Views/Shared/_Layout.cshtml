@@ -3,7 +3,7 @@
 @using Microsoft.AspNetCore.Authorization
 
 <!DOCTYPE html>
-
+<!--Injects the user into the layout page-->
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
 @inject IAuthorizationService AuthorizationService
@@ -34,9 +34,6 @@
                                 <li><a asp-controller="Home" asp-action="About" class="navbar-brand">About</a></li>
                                 <li><a asp-controller="Equipment" asp-action="Index" class="navbar-brand">Products</a></li>
                                 <li><a asp-controller="Feedback" asp-action="Index" class="navbar-brand">Contact Us</a></li>
-
-                               
-
                             </ul>
 
                             @if (SignInManager.IsSignedIn(User))
@@ -48,29 +45,27 @@
                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
                             @await Component.InvokeAsync("ShoppingCartSummary")
    
-
+                            
                             @if (SignInManager.IsSignedIn(User) && User.IsInRole("Administrators"))
-    {
+                             {
                         @await Component.InvokeAsync("AdminMenu")
                         <li class="dropdown">
                             <a asp-controller="EquipmentManager"
                                asp-action="Index">Equipment Management</a>
                         </li>
 
-}
+                          }
                         </ul>
                     </form>
 
-}
-else
-{
+                  }
+                    else
+                    {
                     <ul class="nav navbar-nav navbar-right">
                         <li><a id="registerLink" asp-controller="Account" asp-action="Register">Register</a></li>
                         <li><a id="loginLink" asp-controller="Account" asp-action="Login">Log in</a></li>
-                        @await Component.InvokeAsync("ShoppingCartSummary")
-    
                     </ul>
-}
+                    }
 
                         </div>
                     </div>
@@ -117,12 +112,12 @@ else
                             <div class="col-lg-4  col-md-3 col-sm-6 col-xs-12 ">
                                 <h3> Be Social </h3>
                                 <ul>
-                                    <li>
+                                    @*<li>
                                         <div class="input-append newsletter-box text-center">
                                             <input type="text" class="full text-center" placeholder="Email ">
                                             <button class="btn  bg-gray" type="button"> Enter <i class="fas fa-long-arrow-alt-right"> </i> </button>
                                         </div>
-                                    </li>
+                                    </li>*@
                                 </ul>
                                 <ul class="social">
                                     <li> <a href="#"> <i class="fab fa-facebook-f"> &nbsp; </i> </a> </li>
@@ -141,7 +136,7 @@ else
                         <p class="pull-left"> Copyright © Footer E-commerce Plugin 2014. All right reserved. </p>
                         <div class="pull-right">
                             <ul class="nav nav-pills payments">
-                                <li><i class="fab fa-cc-visa"></i></li>
+                                
                                 <li><i class="fab fa-cc-paypal"></i></li>
                             </ul>
                         </div>

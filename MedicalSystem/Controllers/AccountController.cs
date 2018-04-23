@@ -58,7 +58,7 @@ namespace MedicalSystem.Controllers
             //return View(new RegisterViewModel());
             return View();
         }
-
+        //sets the values of the properties
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel RegisterViewModel)
         {
@@ -88,6 +88,7 @@ namespace MedicalSystem.Controllers
             return View(RegisterViewModel);
         }
 
+        //logout action
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
